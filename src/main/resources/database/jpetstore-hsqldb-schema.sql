@@ -163,3 +163,12 @@ CREATE TABLE sequence
     nextid             int          not null,
     constraint pk_sequence primary key (name)
 );
+-- 게시판 추가
+CREATE TABLE BoardElement (
+  title varchar(300) not null,
+  date DATETIME not null,
+  writer varchar(100) not null,
+  text varchar(1000) not null,
+  id char(10) not null,
+  constraint pk_boardElement primary key (id)
+);

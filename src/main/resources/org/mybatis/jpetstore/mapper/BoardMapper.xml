@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.jpetstore.mapper.BoardMapper">
+
+    <cache />
+
+    <select id="getAll" resultType="BoardElement">
+        SELECT
+            title AS title,
+            date AS date,
+            writer AS writer,
+            id AS id
+        FROM BoardElement
+    </select>
+
+    <select id="getLastId" resultType="String">
+        SELECT
+            id AS id
+        FROM BoardElement
+        ORDER BY DESC
+        LIMIT 1
+    </select>
+
+    <select id="getBoardElementById" resultType="BoardElement">
+        SELECT
+            title AS title,
+            date AS date,
+            writer AS writer,
+            text AS text,
+            id AS id
+        FROM BoardElement
+        WHERE id = #{id}
+    </select>
+
+    <insert id="insertBoardElement">
+        INSERT INTO BoardElement (title, date, writer, text, id)
+        VALUES(#{title}, #{date}, #{writer}, #{text}, #{id})
+    </insert>
+</mapper>
