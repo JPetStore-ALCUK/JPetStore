@@ -88,7 +88,13 @@
 	      </stripes:link>
 	</c:if>
 </c:if> <img align="middle" src="../images/separator.gif" /> <a
-	href="../help.html">?</a></div>
+	href="../help.html">?</a>
+	<img align="middle" src="../images/separator.gif" />
+	<stripes:link
+			beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+			event="viewPopularPets">
+		Popular Pets
+	</stripes:link></div>
 </div>
 
 <div id="Search">
@@ -128,4 +134,4 @@
 
 </div>
 
-<div id="Content"><stripes:messages />
+<div id="Content"><stripes:messages /></div>

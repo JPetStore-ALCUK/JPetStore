@@ -66,6 +66,7 @@ public class OrderService {
       param.put("itemId", itemId);
       param.put("increment", increment);
       itemMapper.updateInventoryQuantity(param);
+      itemMapper.updateItemQuantity(param);
     });
 
     orderMapper.insertOrder(order);
