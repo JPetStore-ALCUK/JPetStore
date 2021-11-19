@@ -59,6 +59,14 @@
 				<stripes:param name="workingItemId" value="${item.itemId}" />
         	Add to Cart
         </stripes:link></td>
+			<td>
+				<stripes:link class="Button"
+							  beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
+							  event="delItem">
+					<stripes:param name="itemId" value="${item.itemId}" />
+					DELETE
+				</stripes:link>
+			</td>
 		</tr>
 	</c:forEach>
 	<tr>

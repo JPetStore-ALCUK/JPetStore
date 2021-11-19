@@ -1,6 +1,6 @@
 <%--
 
-       Copyright 2010-2016 the original author or authors.
+       Copyright 2010-2021 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -54,12 +54,17 @@
 </div>
 
 <div id="Menu">
-<div id="MenuContent"><stripes:link
+<div id="MenuContent">
+	<!-- 카트 -->
+	<stripes:link
 	beanclass="org.mybatis.jpetstore.web.actions.CartActionBean"
 	event="viewCart">
 	<img align="middle" name="img_cart" src="../images/cart.gif" />
-</stripes:link> <img align="middle" src="../images/separator.gif" /> <c:if
-	test="${sessionScope.accountBean == null}">
+</stripes:link>
+	<!-- '|' -->
+	<img align="middle" src="../images/separator.gif" />
+	<!-- 'Sign In' or 'Sign out' -->
+	<c:if test="${sessionScope.accountBean == null}">
 	<stripes:link
 		beanclass="org.mybatis.jpetstore.web.actions.AccountActionBean"
 		event="signonForm">
@@ -80,7 +85,10 @@
 			event="signoff">
             Sign Out
 	      </stripes:link>
+
+		<!-- '|' -->
 		<img align="middle" src="../images/separator.gif" />
+
 		<stripes:link
 			beanclass="org.mybatis.jpetstore.web.actions.AccountActionBean"
 			event="editAccountForm">

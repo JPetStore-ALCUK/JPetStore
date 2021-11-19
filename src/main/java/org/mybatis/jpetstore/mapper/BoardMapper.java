@@ -15,26 +15,16 @@
  */
 package org.mybatis.jpetstore.mapper;
 
+import org.mybatis.jpetstore.domain.BoardElement;
+
 import java.util.List;
-import java.util.Map;
 
-import org.mybatis.jpetstore.domain.Item;
+public interface BoardMapper {
+  List<BoardElement> getAll();
 
-/**
- * The Interface ItemMapper.
- *
- * @author Eduardo Macarron
- */
-public interface ItemMapper {
+  String getLastId();
 
-  void updateInventoryQuantity(Map<String, Object> param);
+  BoardElement getBoardElementById(String id);
 
-  int getInventoryQuantity(String itemId);
-
-  List<Item> getItemListByProduct(String productId);
-
-  Item getItem(String itemId);
-
-  void delItem(String itemId);
-
+  void insertBoardElement(BoardElement boardElement);
 }

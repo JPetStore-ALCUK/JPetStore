@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
 
-       Copyright 2010-2020 the original author or authors.
+       Copyright 2010-2021 the original author or authors.
 
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
@@ -78,5 +78,11 @@
       QTY = QTY - #{increment}
     WHERE ITEMID = #{itemId}
   </update>
+
+  <delete id="delItem">
+    DELETE
+    FROM ITEM
+    WHERE ITEMID = #{itemId}
+  </delete>
 
 </mapper>
