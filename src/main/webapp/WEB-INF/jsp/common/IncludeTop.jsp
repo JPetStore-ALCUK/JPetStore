@@ -127,5 +127,13 @@
 </stripes:link></div>
 
 </div>
+<div>
+	<stripes:link
+			beanclass="org.mybatis.jpetstore.web.actions.BoardActionBean"
+			event="viewBoard">
+		Board
+	</stripes:link> <br />
+</div>
+
 
 <div id="Content"><stripes:messages />

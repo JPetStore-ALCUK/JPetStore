@@ -163,3 +163,4 @@ CREATE TABLE sequence
     nextid             int          not null,
     constraint pk_sequence primary key (name)
 );
+
