@@ -217,11 +217,10 @@ public class CatalogActionBean extends AbstractActionBean {
     itemList = null;
   }
 
-  public RedirectResolution delItem () {
+  public RedirectResolution delItem() {
     if (itemId != null) {
       catalogService.delItem(itemId);
     }
-    return new RedirectResolution(CatalogActionBean.class, "viewProduct")
-            .addParameter("productId", productId);
+    return new RedirectResolution(CatalogActionBean.class, "viewProduct").addParameter("productId", productId);
   }
 }

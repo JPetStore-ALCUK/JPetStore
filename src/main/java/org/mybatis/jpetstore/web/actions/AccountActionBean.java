@@ -15,18 +15,20 @@
  */
 package org.mybatis.jpetstore.web.actions;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 import net.sourceforge.stripes.validation.Validate;
+
 import org.mybatis.jpetstore.domain.Account;
 import org.mybatis.jpetstore.domain.Product;
 import org.mybatis.jpetstore.service.AccountService;
 import org.mybatis.jpetstore.service.CatalogService;
-
-import javax.servlet.http.HttpSession;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 
 /**
  * The Class AccountActionBean.
@@ -65,6 +67,10 @@ public class AccountActionBean extends AbstractActionBean {
 
   public String getUsername() {
     return account.getUsername();
+  }
+
+  public String getName() {
+    return account.getFirstName() + " " + account.getLastName();
   }
 
   @Validate(required = true, on = { "signon", "newAccount", "editAccount" })

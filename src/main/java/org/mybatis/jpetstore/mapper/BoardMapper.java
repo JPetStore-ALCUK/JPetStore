@@ -15,9 +15,9 @@
  */
 package org.mybatis.jpetstore.mapper;
 
-import org.mybatis.jpetstore.domain.BoardElement;
-
 import java.util.List;
+
+import org.mybatis.jpetstore.domain.BoardElement;
 
 public interface BoardMapper {
   List<BoardElement> getAll();

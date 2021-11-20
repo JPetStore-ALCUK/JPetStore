@@ -60,10 +60,17 @@
 	beanclass="org.mybatis.jpetstore.web.actions.CartActionBean"
 	event="viewCart">
 	<img align="middle" name="img_cart" src="../images/cart.gif" />
-</stripes:link>
+	</stripes:link>
 	<!-- '|' -->
 	<img align="middle" src="../images/separator.gif" />
-	<!-- 'Sign In' or 'Sign out' -->
+
+	<stripes:link
+		beanclass="org.mybatis.jpetstore.web.actions.BoardActionBean"
+		event="viewBoard">
+		Board
+	</stripes:link>
+	<img align="middle" src="../images/separator.gif" />
+		<!-- 'Sign In' or 'Sign out' -->
 	<c:if test="${sessionScope.accountBean == null}">
 	<stripes:link
 		beanclass="org.mybatis.jpetstore.web.actions.AccountActionBean"

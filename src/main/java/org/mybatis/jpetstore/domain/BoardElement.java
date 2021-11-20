@@ -15,9 +15,10 @@
  */
 package org.mybatis.jpetstore.domain;
 
+import java.io.Serializable;
 import java.sql.Timestamp;
 
-public class BoardElement {
+public class BoardElement implements Serializable {
   private String title;
   private Timestamp date;
   private String writer;

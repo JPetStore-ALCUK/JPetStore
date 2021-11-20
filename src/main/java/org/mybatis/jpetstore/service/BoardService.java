@@ -15,11 +15,12 @@
  */
 package org.mybatis.jpetstore.service;
 
+import java.util.List;
+
 import org.mybatis.jpetstore.domain.BoardElement;
 import org.mybatis.jpetstore.mapper.BoardMapper;
 import org.springframework.stereotype.Service;
-
-import java.util.List;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class BoardService {
@@ -33,7 +34,7 @@ public class BoardService {
     return boardMapper.getAll();
   }
 
-  public String getListId() {
+  public String getLastId() {
     return boardMapper.getLastId();
   }
 
@@ -41,7 +42,8 @@ public class BoardService {
     return boardMapper.getBoardElementById(id);
   }
 
-  void insertBoardElement(BoardElement boardElement) {
+  @Transactional
+  public void insertBoardElement(BoardElement boardElement) {
     boardMapper.insertBoardElement(boardElement);
   }
 }

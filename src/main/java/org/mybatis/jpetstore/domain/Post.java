@@ -40,7 +40,9 @@ public class Post {
     this.text = text;
   }
 
-  public void setId(String id){this.id = id;}
+  public void setId(String id) {
+    this.id = id;
+  }
 
   public String getTitle() {
     return this.title;
@@ -58,6 +60,8 @@ public class Post {
     return this.text;
   }
 
-  public String getId(){return this.id;};
+  public String getId() {
+    return this.id;
+  };
 
 }
