@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.jpetstore.mapper.SearchMapper">
+    <cache />
+
+    <select id="searchItemByPriceAndCategory" resultType="Item">
+        SELECT
+            ITEMID,
+            ATTR1 AS attribute1
+        FROM
+            ITEM
+        WHERE PRODUCTID = #{productId} AND LISTPRICE >= #{minimumPrice} AND #{maximumPrice} >= LISTPRICE
+    </select>
+
+
+</mapper>

@@ -137,6 +137,11 @@ public class Item implements Serializable {
     this.attribute5 = attribute5;
   }
 
+  //밑의 두줄 없어서 추가함
+  public String getProductId(){ return productId; }
+
+  public void setProductId(String productId){this.productId = productId;}
+  //
   @Override
   public String toString() {
     return "(" + getItemId() + "-" + getProduct().getProductId() + ")";

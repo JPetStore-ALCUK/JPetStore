@@ -134,6 +134,12 @@
 		Board
 	</stripes:link> <br />
 </div>
-
+<div>
+	<stripes:link
+			beanclass="org.mybatis.jpetstore.web.actions.SearchActionBean"
+			event="viewSearchForm">
+		Search with Details
+	</stripes:link> <br />
+</div>
 
 <div id="Content"><stripes:messages />
