@@ -43,6 +43,7 @@ public class CatalogActionBean extends AbstractActionBean {
   private static final String VIEW_PRODUCT = "/WEB-INF/jsp/catalog/Product.jsp";
   private static final String VIEW_ITEM = "/WEB-INF/jsp/catalog/Item.jsp";
   private static final String SEARCH_PRODUCTS = "/WEB-INF/jsp/catalog/SearchProducts.jsp";
+  private static final String SEARCH_POPULAR = "/WEB-INF/jsp/catalog/PopularPets.jsp";
 
   @SpringBean
   private transient CatalogService catalogService;
@@ -181,6 +182,11 @@ public class CatalogActionBean extends AbstractActionBean {
     item = catalogService.getItem(itemId);
     product = item.getProduct();
     return new ForwardResolution(VIEW_ITEM);
+  }
+
+  public ForwardResolution viewPopularPets() {
+    itemList = catalogService.getPurchasedItems();
+    return new ForwardResolution(SEARCH_POPULAR);
   }
 
   /**

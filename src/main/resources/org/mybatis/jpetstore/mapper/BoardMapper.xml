@@ -1,4 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
+<<<<<<< HEAD
 <!--
 
        Copyright 2010-2021 the original author or authors.
@@ -16,6 +17,8 @@
        limitations under the License.
 
 -->
+=======
+>>>>>>> e34ce712bf4c31a187871719ab9ed091ef2b4c0d
 
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
@@ -37,7 +40,11 @@
         SELECT
             id AS id
         FROM BoardElement
+<<<<<<< HEAD
         ORDER BY id DESC
+=======
+        ORDER BY DESC
+>>>>>>> e34ce712bf4c31a187871719ab9ed091ef2b4c0d
         LIMIT 1
     </select>
 

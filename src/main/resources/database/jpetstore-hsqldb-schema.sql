@@ -165,10 +165,19 @@ CREATE TABLE sequence
 );
 -- 게시판 추가
 CREATE TABLE BoardElement (
+<<<<<<< HEAD
                               title varchar(300) not null,
                               date DATETIME not null,
                               writer varchar(100) not null,
                               text varchar(1000) not null,
                               id char(10) not null,
                               constraint pk_boardElement primary key (id)
+=======
+  title varchar(300) not null,
+  date DATETIME not null,
+  writer varchar(100) not null,
+  text varchar(1000) not null,
+  id char(10) not null,
+  constraint pk_boardElement primary key (id)
+>>>>>>> e34ce712bf4c31a187871719ab9ed091ef2b4c0d
 );

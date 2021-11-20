@@ -35,6 +35,12 @@ public interface ItemMapper {
 
   Item getItem(String itemId);
 
+<<<<<<< HEAD
   void delItem(String itemId);
+=======
+  List<Item> getPopular();
+
+  void updateItemQuantity(Map<String, Object> param);
+>>>>>>> e34ce712bf4c31a187871719ab9ed091ef2b4c0d
 
 }

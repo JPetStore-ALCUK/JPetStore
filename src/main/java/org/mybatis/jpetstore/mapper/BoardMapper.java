@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 /*
  *    Copyright 2010-2021 the original author or authors.
  *
@@ -27,4 +28,17 @@ public interface BoardMapper {
   BoardElement getBoardElementById(String id);
 
   void insertBoardElement(BoardElement boardElement);
+=======
+package org.mybatis.jpetstore.mapper;
+
+import org.mybatis.jpetstore.domain.BoardElement;
+
+import java.util.List;
+
+public interface BoardMapper {
+    List<BoardElement> getAll();
+    String getLastId();
+    BoardElement getBoardElementById(String id);
+    void insertBoardElement(BoardElement boardElement);
+>>>>>>> e34ce712bf4c31a187871719ab9ed091ef2b4c0d
 }

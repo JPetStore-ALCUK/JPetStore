@@ -87,7 +87,12 @@ public class CatalogService {
     return itemMapper.getInventoryQuantity(itemId) > 0;
   }
 
+<<<<<<< HEAD
   public void delItem(String itemId) {
     itemMapper.delItem(itemId);
   }
+=======
+  public List<Item> getPurchasedItems(){ return itemMapper.getPopular(); }
+
+>>>>>>> e34ce712bf4c31a187871719ab9ed091ef2b4c0d
 }

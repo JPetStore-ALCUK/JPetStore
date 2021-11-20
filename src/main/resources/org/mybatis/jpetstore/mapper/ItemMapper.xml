@@ -79,10 +79,32 @@
     WHERE ITEMID = #{itemId}
   </update>
 
+<<<<<<< HEAD
   <delete id="delItem">
     DELETE
     FROM ITEM
     WHERE ITEMID = #{itemId}
   </delete>
+=======
+  <select id="getPopular" resultType="Item">
+    SELECT I.ITEMID,
+           I.ATTR1 AS attribute1,
+           I.ATTR2 AS attribute2,
+           I.ATTR3 AS attribute3,
+           I.ATTR4 AS attribute4,
+           I.ATTR5 AS attribute5,
+           P.NAME AS "product.name",
+           L.QUANTITY
+    FROM ITEM I, LINEITEM L, PRODUCT P
+    WHERE P.PRODUCTID = I.ITEMID AND I.ITEMID = L.ITEMID AND L.QUANTITY > 0
+    ORDER BY L.QUANTITY DESC
+  </select>
+
+  <update id="updateItemQuantity">
+    UPDATE LINEITEM SET
+      QUANTITY = QUANTITY + #{increment}
+    WHERE ITEMID = #{itemId}
+  </update>
+>>>>>>> e34ce712bf4c31a187871719ab9ed091ef2b4c0d
 
 </mapper>
