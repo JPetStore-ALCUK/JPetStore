@@ -37,4 +37,8 @@ public interface ItemMapper {
 
   void delItem(String itemId);
 
+  List<Item> getPopular();
+
+  void updateItemQuantity(Map<String, Object> param);
+
 }

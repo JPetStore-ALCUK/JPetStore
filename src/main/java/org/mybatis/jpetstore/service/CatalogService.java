@@ -90,4 +90,6 @@ public class CatalogService {
   public void delItem(String itemId) {
     itemMapper.delItem(itemId);
   }
+
+  public List<Item> getPurchasedItems(){ return itemMapper.getPopular(); }
 }
