@@ -107,6 +107,7 @@ public class BoardActionBean extends AbstractActionBean {
   }
 
   public ForwardResolution viewNewBoardElementForm() {
+    boardElement = new BoardElement();
     boardElement.setDate(new Timestamp(System.currentTimeMillis()));
     return new ForwardResolution(VIEW_NEW_BOARD_ELEMENT_FORM);
   }
