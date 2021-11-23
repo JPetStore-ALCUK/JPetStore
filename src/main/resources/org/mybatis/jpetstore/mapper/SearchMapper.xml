@@ -8,10 +8,14 @@
     <select id="searchItemByPriceAndCategory" resultType="Item">
         SELECT
             ITEMID,
-            ATTR1 AS attribute1
+            ATTR1 AS attribute1,
+            ATTR2 AS attribute2,
+            ATTR3 AS attribute3,
+            ATTR4 AS attribute4,
+            LISTPRICE AS listPrice
         FROM
             ITEM
-        WHERE PRODUCTID = #{productId} AND LISTPRICE >= #{minimumPrice} AND #{maximumPrice} >= LISTPRICE
+        WHERE PRODUCTID = #{productId} AND LISTPRICE >= #{minimumPrice} AND #{maximumPrice} >= LISTPRICE AND ATTR1 = #{attribute1} AND ATTR2 = #{attribute2} AND ATTR3 = #{attribute3} AND ATTR4 = #{attribute4}
     </select>
 
 
