@@ -43,4 +43,6 @@ public class AdoptItem implements Serializable{
     public int getSupportAmount(){return this.supportAmount;}
 
     public String getAttribute(){return this.attribute;}
+
+
 }
