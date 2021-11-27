@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.jpetstore.mapper.AdoptMapper">
+
+    <cache />
+    <insert id="insertList" parameterType="AdoptItem">
+        INSERT INTO adoptitem
+        (itemId, category, name, age, gender, attribute)
+        VALUES
+        (#{itemId}, #{category}, #{name}, #{age}, #{gender}, #{attribute})
+    </insert>
+
+    <select id="selectAdoptItem" parameterType="AdoptItem">
+        SELECT * FROM adoptitem
+    </select>
+
+    <select id="getItem" parameterType="AdoptItem">
+        SELECT * FROM adoptitem
+        WHERE itemid = #{itemId}
+    </select>
+
+</mapper>

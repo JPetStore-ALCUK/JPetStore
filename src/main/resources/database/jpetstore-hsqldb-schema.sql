@@ -149,6 +149,20 @@ create table item (
         references supplier (suppid)
 );
 
+create table adoptitem(
+    itemid varchar(10) not null,
+    category varchar(10) not null,
+    name varchar(10) not null,
+    age int not null,
+    gender varchar(10) not null,
+    state varchar(10) not null default "Not Adopted",
+    supportamount int default 0,
+    attr varchar(80) not null,
+    constraint pk_adoptitem primary key (itemid),
+        constraint fk_category foreign key(category)
+        references category(catid)
+)
+
 create index itemProd on item (productid);
 
 create table inventory (

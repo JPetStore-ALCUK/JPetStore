@@ -109,7 +109,11 @@
 					event="viewBoard">
 				Board
 			</stripes:link>
-
+			<stripes:link
+					beanclass="org.mybatis.jpetstore.web.actions.AdoptActionBean"
+					event="viewAdoptItem">
+				AdoptItem
+			</stripes:link>
 		</div>
 	</div>
 
@@ -128,7 +132,7 @@
 		</stripes:form>
 		</div>
 	</div>
-k
+
 	<div id="QuickLinks"><stripes:link
 			beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean"
 			event="viewCategory">

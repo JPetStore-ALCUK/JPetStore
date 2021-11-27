@@ -16,7 +16,6 @@
 package org.mybatis.jpetstore.mapper;
 
 import java.util.List;
-import java.util.Map;
 
 import org.mybatis.jpetstore.domain.LineItem;
 import org.mybatis.jpetstore.domain.Item;

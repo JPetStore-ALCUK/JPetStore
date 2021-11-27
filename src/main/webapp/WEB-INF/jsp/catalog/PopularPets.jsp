@@ -26,10 +26,7 @@
         <td>${lineitem.quantity}</td>
       </tr>
     </c:forEach>
-    <tr>
-      <td>
-      </td>
-    </tr>
+
   </table>
 
 </div>
