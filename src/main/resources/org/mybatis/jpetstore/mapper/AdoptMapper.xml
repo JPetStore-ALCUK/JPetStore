@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.jpetstore.mapper.AdoptMapper">
+    <select id="getAllAdoptItem" resultType="AdoptItem">
+        SELECT
+            itemid AS itemid,
+            category AS category,
+            name AS name,
+            age AS age,
+            gender AS gender,
+            state AS state,
+            supportamount AS supportamount,
+            total_support AS total_support,
+            attr AS attr
+        FROM adoptitem
+    </select>
+
+    <select id="getAdoptItemById" resultType="AdoptItem">
+        SELECT
+            itemid AS itemid,
+            category AS category,
+            name AS name,
+            age AS age,
+            gender AS gender,
+            state AS state,
+            supportamount AS supportamount,
+            total_support AS total_support,
+            attr AS attr
+        FROM adoptitem
+        WHERE itemid = #{itemid}
+    </select>
+
+    <insert id="insertAdoptItem">
+        INSERT INTO adoptitem (itemid, category, name, age, gender, state,supportamount,total_support,attr)
+        VALUES(#{itemid}, #{category}, #{name}, #{age}, #{gender}, #{state},#{supportamount},#{total_support},#{attr})
+    </insert>
+
+    <delete id="deleteAdoptItem">
+        DELETE FROM adoptitem WHERE itemId = #{itemId}
+    </delete>
+</mapper>

@@ -110,6 +110,15 @@ create table lineitem (
       constraint pk_lineitem primary key (orderid, linenum)
 );
 
+-- 주문 목록에 들어갈 입양 동물 table
+CREATE TABLE LineAdoptItem(
+    orderid int not null,
+    lineAdoptNum int not null,
+    adoptid varchar(10) not null,
+    unitprice decimal(10,2) not null,
+    constraint pk_lineitem primary key (orderid, lineAdoptNum)
+);
+
 create table category (
 	catid varchar(10) not null,
 	name varchar(80) null,
@@ -148,6 +157,21 @@ create table item (
         constraint fk_item_2 foreign key (supplier)
         references supplier (suppid)
 );
+-- 입양 동물 추가
+create table adoptitem(
+                          itemid varchar(10) not null,
+                          category varchar(10) not null,
+                          name varchar(10) not null,
+                          age int not null,
+                          gender varchar(10) not null,
+                          state varchar(10) not null,
+                          supportamount decimal(10,2) not null,
+                          total_support decimal(10,2) not null,
+                          attr varchar(80) not null,
+                          constraint pk_adoptitem primary key (itemid),
+                          constraint fk_category foreign key(category)
+                              references category(catid)
+);
 
 create index itemProd on item (productid);
 
@@ -172,3 +196,4 @@ CREATE TABLE BoardElement (
                               id char(10) not null,
                               constraint pk_boardElement primary key (id)
 );
+
