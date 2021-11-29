@@ -24,9 +24,12 @@ import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 
+import org.mybatis.jpetstore.domain.AdoptItem;
 import org.mybatis.jpetstore.domain.Cart;
 import org.mybatis.jpetstore.domain.CartItem;
 import org.mybatis.jpetstore.domain.Item;
+import org.mybatis.jpetstore.mapper.AdoptMapper;
+import org.mybatis.jpetstore.service.AdoptService;
 import org.mybatis.jpetstore.service.CatalogService;
 
 /**
@@ -44,9 +47,12 @@ public class CartActionBean extends AbstractActionBean {
 
   @SpringBean
   private transient CatalogService catalogService;
+  @SpringBean
+  private transient AdoptService adoptService; // 입양 동물 서비스
 
   private Cart cart = new Cart();
   private String workingItemId;
+  private String workingAdoptItemId; // 유기 동물 리스트에서 유기 동물 선택 시 입력 받을 유기 동물 id
 
   public Cart getCart() {
     return cart;
@@ -58,6 +64,10 @@ public class CartActionBean extends AbstractActionBean {
 
   public void setWorkingItemId(String workingItemId) {
     this.workingItemId = workingItemId;
+  }
+
+  public void setWorkingAdoptItemId(String workingAdoptItemId) {
+    this.workingAdoptItemId = workingAdoptItemId;
   }
 
   /**
@@ -123,6 +133,29 @@ public class CartActionBean extends AbstractActionBean {
     return new ForwardResolution(VIEW_CART);
   }
 
+  //입양 동물 카드에 추가
+  public Resolution addAdoptItemToCart(){
+    boolean isInStock = adoptService.isAdoptItemInStock(workingAdoptItemId);
+    if (!cart.containsAdoptItem(workingAdoptItemId)&&isInStock) { // 카트에 이미 존재하면 추가 x
+      AdoptItem adoptItem = adoptService.getAdoptItemById(workingAdoptItemId);
+      cart.addAdoptItem(adoptItem, isInStock);
+    }
+    return new ForwardResolution(VIEW_CART);
+  }
+
+  //입양 동물 카트에서 제거
+  public Resolution removeAdoptItemFromCart() {
+
+    AdoptItem adoptItem = cart.removeAdoptItem(workingAdoptItemId);
+
+    if (adoptItem == null) {
+      setMessage("Attempted to remove null CartAdoptItem from Cart.");
+      return new ForwardResolution(ERROR);
+    } else {
+      return new ForwardResolution(VIEW_CART);
+    }
+  }
+
   public ForwardResolution viewCart() {
     return new ForwardResolution(VIEW_CART);
   }
@@ -134,6 +167,7 @@ public class CartActionBean extends AbstractActionBean {
   public void clear() {
     cart = new Cart();
     workingItemId = null;
+    workingAdoptItemId = null; // 선택된 입양 동물 id 초기화
   }
 
 }

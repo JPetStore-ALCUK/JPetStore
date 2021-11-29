@@ -26,8 +26,8 @@ import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 
-import org.mybatis.jpetstore.domain.Order;
-import org.mybatis.jpetstore.domain.LineItem;
+import org.mybatis.jpetstore.domain.*;
+import org.mybatis.jpetstore.service.AdoptService;
 import org.mybatis.jpetstore.service.OrderService;
 
 /**
@@ -51,12 +51,15 @@ public class OrderActionBean extends AbstractActionBean {
 
   @SpringBean
   private transient OrderService orderService;
+  @SpringBean
+  private transient AdoptService adoptService;
 
   private Order order = new Order();
   private boolean shippingAddressRequired;
   private boolean confirmed;
   private List<Order> orderList;
   private List<LineItem> itemList;
+  private List<LineAdoptItem> adoptItemList; // 입양된 유기 동물 리스트
 
   static {
     CARD_TYPE_LIST = Collections.unmodifiableList(Arrays.asList("Visa", "MasterCard", "American Express"));
@@ -108,6 +111,14 @@ public class OrderActionBean extends AbstractActionBean {
 
   public void setItemList(List<LineItem> itemList) {
     this.itemList = itemList;
+  }
+
+  public List<LineAdoptItem> getAdoptItemList() {
+    return adoptItemList;
+  }
+
+  public void setAdoptItemList(List<LineAdoptItem> adoptItemList) {
+    this.adoptItemList = adoptItemList;
   }
 
   /**
@@ -166,11 +177,11 @@ public class OrderActionBean extends AbstractActionBean {
       return new ForwardResolution(CONFIRM_ORDER);
     } else if (getOrder() != null) {
 
-      orderService.insertOrder(order);
+      orderService.insertOrder(order); //주문 완료
 
       CartActionBean cartBean = (CartActionBean) session.getAttribute("/actions/Cart.action");
       cartBean.clear();
-
+      
       setMessage("Thank you, your order has been submitted.");
 
       return new ForwardResolution(VIEW_ORDER);

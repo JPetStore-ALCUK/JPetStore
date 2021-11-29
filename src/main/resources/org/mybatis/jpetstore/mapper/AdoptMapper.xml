@@ -41,4 +41,5 @@
     <delete id="deleteAdoptItem">
         DELETE FROM adoptitem WHERE itemId = #{itemId}
     </delete>
+
 </mapper>

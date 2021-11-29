@@ -64,10 +64,10 @@ public class Cart implements Serializable {
 
   public int getNumberOfAdoptItems(){return adoptItemList.size();}
 
-  public boolean containsAdoptItem(AdoptItem adoptItem){
+  public boolean containsAdoptItem(String adoptItemId){
     boolean check = false;
     for(CartAdoptItem adoptCartItem:adoptItemList){
-      if(adoptCartItem.getAdopt()==adoptItem) {check=true;break;}
+      if(adoptCartItem.getAdopt().getItemId()==adoptItemId) {check=true;break;}
     }
     return check;
   }
@@ -126,7 +126,7 @@ public class Cart implements Serializable {
   }
 
   public void addAdoptItem(AdoptItem adoptItem, boolean isInStock){
-    if(!containsAdoptItem(adoptItem)) {
+    if(!containsAdoptItem(adoptItem.getItemId())) {
       CartAdoptItem cartAdoptItem = new CartAdoptItem();
       cartAdoptItem.setAdopt(adoptItem);
       cartAdoptItem.setInStock(isInStock);

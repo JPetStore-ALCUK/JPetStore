@@ -3,10 +3,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="org.mybatis.jpetstore.mapper.LineItemMapper">
+<mapper namespace="org.mybatis.jpetstore.mapper.LineAdoptItemMapper">
     <cache />
 
-    <select id="getLineAdoptItemsByOrderId" resultType="LineItem">
+    <select id="getLineAdoptItemsByOrderId" resultType="LineAdoptItem">
         SELECT
             orderid,
             lineAdoptNum AS lineAdoptNum,

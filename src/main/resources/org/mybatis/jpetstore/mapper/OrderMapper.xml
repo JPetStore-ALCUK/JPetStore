@@ -106,4 +106,10 @@
     VALUES (#{orderId,jdbcType=NUMERIC}, #{orderId,jdbcType=NUMERIC}, #{orderDate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
   </insert>
 
+  <!-- 주문 내역과 유기 동물 주문 목록을 연결 -->
+  <insert id="insertOrderAdoptStatus">
+    INSERT INTO orderAdoptStatus(ORDERID, LINEADOPTNUM, TIMESTAMP, STATUS)
+    VALUES (#{orderId,jdbcType=NUMERIC}, #{orderId,jdbcType=NUMERIC}, #{orderDate,jdbcType=TIMESTAMP}, #{status,jdbcType=VARCHAR})
+  </insert>
+
 </mapper>

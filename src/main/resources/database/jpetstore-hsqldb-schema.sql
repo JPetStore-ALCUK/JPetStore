@@ -101,6 +101,15 @@ create table orderstatus (
       constraint pk_orderstatus primary key (orderid, linenum)
 );
 
+-- 주문 내역과 주문 목록에 들어갈 입양 동물 연결하는 table
+create table orderAdoptStatus(
+    orderid int not null,
+    lineAdoptNum int not null,
+    timestamp date not null,
+    status varchar(2) not null,
+    constraint pk_orderAdoptStatus primary key (orderid, lineAdoptNum)
+);
+
 create table lineitem (
       orderid int not null,
       linenum int not null,
@@ -116,7 +125,7 @@ CREATE TABLE LineAdoptItem(
     lineAdoptNum int not null,
     adoptid varchar(10) not null,
     unitprice decimal(10,2) not null,
-    constraint pk_lineitem primary key (orderid, lineAdoptNum)
+    constraint pk_LineAdoptItem primary key (orderid, lineAdoptNum)
 );
 
 create table category (

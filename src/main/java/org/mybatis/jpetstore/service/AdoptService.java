@@ -34,7 +34,7 @@ public class AdoptService {
     }
 
     @Transactional
-    void deleteAdoptItem(String itemId){
+    public void deleteAdoptItem(String itemId){
         adoptMapper.deleteAdoptItem(itemId);
     }
 
@@ -48,4 +48,10 @@ public class AdoptService {
         this.lineAdoptItemMapper.insertAdoptLineItem(lineAdoptItem);
     }
 
+    public boolean isAdoptItemInStock(String adoptItemId){
+        AdoptItem adoptItem = null;
+        adoptItem = adoptMapper.getAdoptItemById(adoptItemId);
+        if(adoptItem!=null) return true;
+        else return false;
+    }
 }
