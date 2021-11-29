@@ -118,3 +118,6 @@ INSERT INTO inventory (itemid, qty ) VALUES ('EST-26',10000);
 INSERT INTO inventory (itemid, qty ) VALUES ('EST-27',10000);
 INSERT INTO inventory (itemid, qty ) VALUES ('EST-28',10000);
 
+INSERT INTO adoptitem (itemId, category, name, age, gender, state, supportamount, attribute) VALUES ('EST-40', 'DOGS', 'ZERO', 3, 'MALE' , 'Not Adopted', 0, 'ACTIVE');
+INSERT INTO adoptitem (itemId, category, name, age, gender, state, supportamount, attribute) VALUES ('EST-41', 'CATS', 'NABI', 2, 'FEMALE' , 'Not Adopted', 0, 'SHY');
+

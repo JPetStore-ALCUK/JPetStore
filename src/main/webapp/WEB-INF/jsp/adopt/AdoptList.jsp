@@ -5,11 +5,15 @@
     Return to Main Menu</stripes:link></div>
 
 <div id="Adopt">
-<stripes:link
+<c:if test="${sessionScope.accountBean.authenticated}">
+    <c:if test="${sessionScope.accountBean.account.username == 'manager'}">
+        <stripes:link
         beanclass="org.mybatis.jpetstore.web.actions.AdoptActionBean"
         event="insertForm">
-    INSERT ANIMAL
-</stripes:link>
+            INSERT ANIMAL
+        </stripes:link>
+    </c:if>
+</c:if>
     <table>
         <tr>
             <th>Item ID</th>
@@ -25,7 +29,7 @@
                     ${adoptitem.itemId}
                 </stripes:link></td>
                 <td>${adoptitem.category}</td>
-                <td>${lineitem.attribute}</td>
+                <td>${adoptitem.attribute}</td>
             </tr>
         </c:forEach>
     </table>

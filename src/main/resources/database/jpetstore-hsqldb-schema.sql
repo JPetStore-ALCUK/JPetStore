@@ -152,13 +152,13 @@ create table item (
 create table adoptitem(
     itemid varchar(10) not null,
     category varchar(10) not null,
-    name varchar(10) not null,
+    name varchar(20) not null,
     age int not null,
     gender varchar(10) not null,
-    state varchar(10) not null default "Not Adopted",
-    supportamount int default 0,
-    attr varchar(80) not null,
-    constraint pk_adoptitem primary key (itemid),
+    state varchar(20) not null,
+    supportamount int,
+    attribute varchar(30) not null,
+    constraint pk_adoptitem primary key (itemId),
         constraint fk_category foreign key(category)
         references category(catid)
 )

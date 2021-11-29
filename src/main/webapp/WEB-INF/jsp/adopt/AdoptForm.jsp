@@ -13,36 +13,33 @@
         </tr>
             <tr>
                 <td>Item ID:</td>
-                <td><stripes:text name="adoptitem.itemId" /></td>
+                <td><stripes:text name="itemId" /></td>
             </tr>
             <tr>
                 <td>Category:</td>
-                <td><stripes:text name="adoptitem.category" /></td>
+                <td><stripes:text name="category" /></td>
             </tr>
             <tr>
                 <td>Name:</td>
-                <td><stripes:text name="adoptitem.name" /></td>
+                <td><stripes:text name="name" /></td>
             </tr>
             <tr>
                 <td>Age:</td>
-                <td><stripes:text name="adoptitem.age" /></td>
+                <td><stripes:text name="age" /></td>
             </tr>
             <tr>
                 <td>Gender:</td>
-                <td><stripes:text name="adoptitem.gender" /></td>
-            </tr>
-            <tr>
-                <td>supportAmount:</td>
-                <td><stripes:text name="adoptitem.attribute" /></td>
+                <td><stripes:text name="gender" /></td>
             </tr>
             <tr>
                 <td>Description:</td>
-                <td><stripes:text name="adoptitem.supportAmount" /></td>
+                <td><stripes:text name="attribute" /></td>
             </tr>
-    </table>
-        <stripes:submit name="insertForm" value="Insert" />
 
-    </stripes:form>
+    </table>
+        <stripes:submit name="insertAnimal" value="Insert" />
+        </stripes:form>
+
 </div>
 
 <%@ include file="../common/IncludeBottom.jsp"%>

@@ -12,7 +12,8 @@ public class AdoptItem implements Serializable{
     private int supportAmount;
     private String attribute;
 
-    public void setAll(String itemId, String category, String name, int age, String gender, String attribute){
+    public void setAll(String itemId, String category, String name, int age, String gender, String attribute)
+    {
         this.itemId = itemId;
         this.category = category;
         this.name = name;
@@ -20,36 +21,41 @@ public class AdoptItem implements Serializable{
         this.gender = gender;
         this.attribute = attribute;
     }
-    public void setItemId(String itemId){this.itemId=itemId;}
+    public void setItemId(String itemId){this.itemId=itemId.trim();}
 
-    public void setCategory(String category){this.category=category;}
+    public void setCategory(String category){this.category=category.trim();}
 
-    public void setName(String name){this.name=name;}
+    public void setName(String name){this.name=name.trim();}
 
     public void setAge(int age){this.age=age;}
 
-    public void setGender(String gender){this.gender=gender;}
+    public void setGender(String gender){this.gender=gender.trim();}
 
-    public void setState(String state){this.state=state;}
+    public void setState(String state){this.state=state.trim();}
 
     public void setSupportAmount(int supportAmount){this.supportAmount=supportAmount;}
 
-    public void setAttribute(String attribute){this.attribute=attribute;}
+    public void setAttribute(String attribute){this.attribute=attribute.trim();}
 
-    public String getItemID(){return this.itemId;}
+    public String getItemId(){return itemId;}
 
-    public String getCategory(){return this.category;}
+    public String getCategory(){return category;}
 
-    public String getName(){return this.name;}
+    public String getName(){return name;}
 
-    public int getAge(){return this.age;}
+    public int getAge(){return age;}
 
-    public String getGender(){return this.gender;}
+    public String getGender(){return gender;}
 
-    public String getState(){return this.state;}
+    public String getState(){return state;}
 
-    public int getSupportAmount(){return this.supportAmount;}
+    public int getSupportAmount(){return supportAmount;}
 
-    public String getAttribute(){return this.attribute;}
+    public String getAttribute(){return attribute;}
+
+    @Override
+    public String toString() {
+        return "(" + getItemId() + ")";
+    }
 
 }
