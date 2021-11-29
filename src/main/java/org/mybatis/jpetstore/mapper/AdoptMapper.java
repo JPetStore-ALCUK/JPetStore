@@ -1,8 +1,8 @@
 package org.mybatis.jpetstore.mapper;
 
 import org.mybatis.jpetstore.domain.AdoptItem;
-import org.mybatis.jpetstore.domain.BoardElement;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 public interface AdoptMapper {
@@ -13,4 +13,8 @@ public interface AdoptMapper {
     void insertAdoptItem(AdoptItem adoptItem);
 
     void deleteAdoptItem(String itemId);
+
+    void updateAdoptItemSupportAmount(BigDecimal supportamount, BigDecimal total_support);
+
+    BigDecimal getAdoptItemTotalSupportById(String itemid);
 }

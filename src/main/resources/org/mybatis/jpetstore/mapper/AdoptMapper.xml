@@ -42,4 +42,14 @@
         DELETE FROM adoptitem WHERE itemId = #{itemId}
     </delete>
 
+    <update id="updateAdoptItemSupportAmount">
+        UPDATE adoptitem SET supportamount= #{supportamount}, total_support=#{total_support} WHERE itemid=#{itemid}
+    </update>
+
+    <select id="getAdoptItemTotalSupportById" resultType="bigdecimal">
+        SELECT
+            total_support AS total_support
+        FROM adoptitem
+        WHERE itemid = #{itemid}
+    </select>
 </mapper>

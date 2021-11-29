@@ -7,6 +7,7 @@ import org.mybatis.jpetstore.mapper.LineAdoptItemMapper;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Service
@@ -36,6 +37,11 @@ public class AdoptService {
     @Transactional
     public void deleteAdoptItem(String itemId){
         adoptMapper.deleteAdoptItem(itemId);
+    }
+
+    @Transactional
+    public void updateAdoptItemSupportAmount(BigDecimal supportamount, BigDecimal total_support){
+        adoptMapper.updateAdoptItemSupportAmount(supportamount,total_support);
     }
 
     //adoptItemMapper
