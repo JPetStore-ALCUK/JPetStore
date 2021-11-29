@@ -40,8 +40,12 @@ public class AdoptService {
     }
 
     @Transactional
-    public void updateAdoptItemSupportAmount(BigDecimal supportamount, BigDecimal total_support){
-        adoptMapper.updateAdoptItemSupportAmount(supportamount,total_support);
+    public void updateAdoptItemSupportAmount(BigDecimal supportamount, BigDecimal total_support, String itemid){
+        adoptMapper.updateAdoptItemSupportAmount(supportamount,total_support, itemid);
+    }
+
+    public  BigDecimal getAdoptItemTotalSupportById(String itemid){
+        return adoptMapper.getAdoptItemTotalSupportById(itemid);
     }
 
     //adoptItemMapper

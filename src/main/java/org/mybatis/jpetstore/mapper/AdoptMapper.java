@@ -14,7 +14,7 @@ public interface AdoptMapper {
 
     void deleteAdoptItem(String itemId);
 
-    void updateAdoptItemSupportAmount(BigDecimal supportamount, BigDecimal total_support);
+    void updateAdoptItemSupportAmount(BigDecimal supportamount, BigDecimal total_support, String itemid);
 
     BigDecimal getAdoptItemTotalSupportById(String itemid);
 }
