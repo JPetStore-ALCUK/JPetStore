@@ -166,6 +166,7 @@ create table item (
         constraint fk_item_2 foreign key (supplier)
         references supplier (suppid)
 );
+
 -- 입양 동물 추가
 create table adoptitem(
                           itemid varchar(10) not null,
@@ -173,10 +174,10 @@ create table adoptitem(
                           name varchar(10) not null,
                           age int not null,
                           gender varchar(10) not null,
-                          state varchar(10) not null,
+                          state varchar(100) not null,
                           supportamount decimal(10,2) not null,
                           total_support decimal(10,2) not null,
-                          attr varchar(80) not null,
+                          attribute varchar(80) not null,
                           constraint pk_adoptitem primary key (itemid),
                           constraint fk_category foreign key(category)
                               references category(catid)
@@ -205,4 +206,3 @@ CREATE TABLE BoardElement (
                               id char(10) not null,
                               constraint pk_boardElement primary key (id)
 );
-

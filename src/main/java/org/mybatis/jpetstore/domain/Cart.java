@@ -36,7 +36,7 @@ public class Cart implements Serializable {
   private final Map<String, CartItem> itemMap = Collections.synchronizedMap(new HashMap<>());
   private final List<CartItem> itemList = new ArrayList<>();
   private final List<CartAdoptItem> adoptItemList = new ArrayList<>();//입양 동물 리스트
-  
+
   public Iterator<CartItem> getCartItems() {
     return itemList.iterator();
   }
@@ -52,7 +52,7 @@ public class Cart implements Serializable {
   public Iterator<CartItem> getAllCartItems() {
     return itemList.iterator();
   }
-  
+
   public boolean containsItemId(String itemId) {
     return itemMap.containsKey(itemId);
   }
@@ -71,6 +71,7 @@ public class Cart implements Serializable {
     }
     return check;
   }
+
   /**
    * Adds the item.
    *
@@ -152,7 +153,6 @@ public class Cart implements Serializable {
     }
   }
 
-
   /**
    * Gets the sub total.
    *
@@ -166,6 +166,7 @@ public class Cart implements Serializable {
   //입양된 아이들에게 후원한 총 금액 계산
   public BigDecimal getSubAdoptTotal(){
     return adoptItemList.stream()
-            .map(cartAdoptItem -> cartAdoptItem.getAdopt().getSupportamount()).reduce(BigDecimal.ZERO,BigDecimal::add);
+            .map(cartAdoptItem -> cartAdoptItem.getAdopt().getSupportAmount()).reduce(BigDecimal.ZERO,BigDecimal::add);
   }
+
 }

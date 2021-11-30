@@ -28,6 +28,8 @@ import net.sourceforge.stripes.integration.spring.SpringBean;
 
 import org.mybatis.jpetstore.domain.*;
 import org.mybatis.jpetstore.service.AdoptService;
+import org.mybatis.jpetstore.domain.Order;
+import org.mybatis.jpetstore.domain.LineItem;
 import org.mybatis.jpetstore.service.OrderService;
 
 /**
@@ -51,6 +53,7 @@ public class OrderActionBean extends AbstractActionBean {
 
   @SpringBean
   private transient OrderService orderService;
+
   @SpringBean
   private transient AdoptService adoptService;
 
@@ -181,7 +184,9 @@ public class OrderActionBean extends AbstractActionBean {
 
       CartActionBean cartBean = (CartActionBean) session.getAttribute("/actions/Cart.action");
       cartBean.clear();
-      
+
+      orderService.insertOrder(order);
+
       setMessage("Thank you, your order has been submitted.");
 
       return new ForwardResolution(VIEW_ORDER);

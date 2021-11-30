@@ -19,11 +19,15 @@ INSERT INTO sequence VALUES('ordernum', 1000);
 INSERT INTO signon VALUES('j2ee','j2ee');
 INSERT INTO signon VALUES('ACID','ACID');
 
+INSERT INTO signon VALUES('manager','manager');
+
 INSERT INTO account VALUES('j2ee','yourname@yourdomain.com','ABC', 'XYX', 'OK', '901 San Antonio Road', 'MS UCUP02-206', 'Palo Alto', 'CA', '94303', 'USA',  '555-555-5555');
 INSERT INTO account VALUES('ACID','acid@yourdomain.com','ABC', 'XYX', 'OK', '901 San Antonio Road', 'MS UCUP02-206', 'Palo Alto', 'CA', '94303', 'USA',  '555-555-5555');
+INSERT INTO account VALUES('manager','manager@yourdomain.com','ABC', 'XYX', 'OK', '901 San Antonio Road', 'MS UCUP02-206', 'Palo Alto', 'CA', '94303', 'USA',  '555-555-5555');
 
 INSERT INTO profile VALUES('j2ee','english','DOGS',1,1);
 INSERT INTO profile VALUES('ACID','english','CATS',1,1);
+INSERT INTO profile VALUES('manager','english','FISH',1,1);
 
 INSERT INTO bannerdata VALUES ('FISH','<image src="../images/banner_fish.gif">');
 INSERT INTO bannerdata VALUES ('CATS','<image src="../images/banner_cats.gif">');
@@ -114,4 +118,7 @@ INSERT INTO inventory (itemid, qty ) VALUES ('EST-25',10000);
 INSERT INTO inventory (itemid, qty ) VALUES ('EST-26',10000);
 INSERT INTO inventory (itemid, qty ) VALUES ('EST-27',10000);
 INSERT INTO inventory (itemid, qty ) VALUES ('EST-28',10000);
+
+INSERT INTO adoptitem (itemId, category, name, age, gender, state, supportamount, total_support, attribute) VALUES ('EST-40', 'DOGS', 'ZERO', 3, 'MALE' , 'Not Adopted', 0, 0,'ACTIVE');
+INSERT INTO adoptitem (itemId, category, name, age, gender, state, supportamount, total_support, attribute) VALUES ('EST-41', 'CATS', 'NABI', 2, 'FEMALE' , 'Not Adopted', 0, 0, 'SHY');
 

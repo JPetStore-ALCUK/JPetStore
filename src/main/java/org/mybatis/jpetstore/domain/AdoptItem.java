@@ -3,7 +3,7 @@ package org.mybatis.jpetstore.domain;
 import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class AdoptItem implements Serializable {
+public class AdoptItem implements Serializable{
     private String itemId;
     private String category;
     private String name;
@@ -12,7 +12,17 @@ public class AdoptItem implements Serializable {
     private String state;
     private BigDecimal supportamount;
     private BigDecimal total_support;
-    private String attr;
+    private String attribute;
+
+    public void setAll(String itemId, String category, String name, int age, String gender, String attribute)
+    {
+        this.itemId = itemId;
+        this.category = category;
+        this.name = name;
+        this.age = age;
+        this.gender = gender;
+        this.attribute = attribute;
+    }
 
     public void setTotal_support(BigDecimal total_support) {
         this.total_support = total_support;
@@ -42,12 +52,12 @@ public class AdoptItem implements Serializable {
         this.state = state;
     }
 
-    public void setSupportamount(BigDecimal supportamount) {
+    public void setSupportAmount(BigDecimal supportamount) {
         this.supportamount = supportamount;
     }
 
-    public void setAttr(String attr) {
-        this.attr = attr;
+    public void setAttribute(String attr) {
+        this.attribute = attribute;
     }
 
     public String getItemId() {
@@ -74,7 +84,7 @@ public class AdoptItem implements Serializable {
         return state;
     }
 
-    public BigDecimal getSupportamount() {
+    public BigDecimal getSupportAmount() {
         return supportamount;
     }
 
@@ -82,8 +92,12 @@ public class AdoptItem implements Serializable {
         return total_support;
     }
 
-    public String getAttr() {
-        return attr;
+    public String getAttribute() {
+        return attribute;
     }
-}
+    @Override
+    public String toString() {
+        return "(" + getItemId() + ")";
+    }
 
+}

@@ -19,7 +19,7 @@ public class LineAdoptItem implements Serializable {
     public LineAdoptItem(int lineAdoptItemNumber, CartAdoptItem cartAdoptItem){
         this.lineAdoptItemNumber = lineAdoptItemNumber;
         this.adoptId = cartAdoptItem.getAdopt().getItemId();
-        this.supportamount = cartAdoptItem.getAdopt().getSupportamount();
+        this.supportamount = cartAdoptItem.getAdopt().getSupportAmount();
         this.adoptItem = cartAdoptItem.getAdopt();
     }
 

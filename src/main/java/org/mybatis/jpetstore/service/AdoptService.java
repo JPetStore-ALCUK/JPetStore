@@ -15,8 +15,8 @@ public class AdoptService {
     private final AdoptMapper adoptMapper;
     private final LineAdoptItemMapper lineAdoptItemMapper;
 
-    public AdoptService(AdoptMapper adoptMapper,LineAdoptItemMapper lineAdoptItemMapper ){
-        this.adoptMapper =adoptMapper;
+    public AdoptService(AdoptMapper adoptMapper, LineAdoptItemMapper lineAdoptItemMapper) {
+        this.adoptMapper = adoptMapper;
         this.lineAdoptItemMapper = lineAdoptItemMapper;
     }
 
@@ -64,4 +64,19 @@ public class AdoptService {
         if(adoptItem!=null) return true;
         else return false;
     }
+
+    @Transactional
+    public void insertList(AdoptItem adoptitem) {
+        adoptMapper.insertList(adoptitem);
+    }
+
+    public List<AdoptItem> selectAdoptItem() {
+        List<AdoptItem> itemList = adoptMapper.selectAdoptItem();
+        return itemList;
+    }
+
+    public AdoptItem getItem(String itemId) {
+        return adoptMapper.getItem(itemId);
+    }
+
 }

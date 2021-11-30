@@ -16,9 +16,6 @@
 package org.mybatis.jpetstore.service;
 
 import java.util.*;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.function.*;
-import java.util.stream.*;
 
 import org.mybatis.jpetstore.domain.Item;
 import org.mybatis.jpetstore.domain.LineItem;
@@ -45,6 +42,7 @@ public class OrderService {
 
   public OrderService(ItemMapper itemMapper, OrderMapper orderMapper, SequenceMapper sequenceMapper,
       LineItemMapper lineItemMapper, LineAdoptItemMapper lineAdoptItemMapper,AdoptMapper adoptMapper) {
+
     this.itemMapper = itemMapper;
     this.orderMapper = orderMapper;
     this.sequenceMapper = sequenceMapper;
@@ -74,6 +72,7 @@ public class OrderService {
     orderMapper.insertOrder(order);
     orderMapper.insertOrderStatus(order);
     orderMapper.insertOrderAdoptStatus(order); // 주문서와 주문한 유기 동물들을 연결
+
     order.getLineItems().forEach(lineItem -> {
       lineItem.setOrderId(order.getOrderId());
       lineItemMapper.insertLineItem(lineItem);
@@ -101,6 +100,7 @@ public class OrderService {
     Order order = orderMapper.getOrder(orderId);
     order.setLineItems(lineItemMapper.getLineItemsByOrderId(orderId));
     order.setLineAdoptItems(lineAdoptItemMapper.getLineAdoptItemsByOrderId(orderId)); // 입양한 유기동물 목록 가져오기
+
     order.getLineItems().forEach(lineItem -> {
       Item item = itemMapper.getItem(lineItem.getItemId());
       item.setQuantity(itemMapper.getInventoryQuantity(lineItem.getItemId()));
