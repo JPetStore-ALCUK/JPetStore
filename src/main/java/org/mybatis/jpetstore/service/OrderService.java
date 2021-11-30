@@ -84,7 +84,7 @@ public class OrderService {
     });
     // 입양이 된 유기 동물들(AdoptItem) db에서 삭제
     order.getLineAdoptItems().forEach(lineAdoptItem -> {
-      adoptMapper.deleteAdoptItem(lineAdoptItem.getAdoptId());
+      adoptMapper.deleteAdoptItem(lineAdoptItem.getAdoptid());
     });
   }
 

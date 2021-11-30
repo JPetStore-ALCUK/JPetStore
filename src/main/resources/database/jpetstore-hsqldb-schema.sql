@@ -124,7 +124,6 @@ CREATE TABLE LineAdoptItem(
     orderid int not null,
     lineAdoptNum int not null,
     adoptid varchar(10) not null,
-    unitprice decimal(10,2) not null,
     constraint pk_LineAdoptItem primary key (orderid, lineAdoptNum)
 );
 

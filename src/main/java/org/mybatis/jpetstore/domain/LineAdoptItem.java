@@ -5,8 +5,8 @@ import java.math.BigDecimal;
 
 public class LineAdoptItem implements Serializable {
     private int orderId;
-    private int lineAdoptItemNumber;
-    private String adoptId;
+    private int lineAdoptNum;
+    private String adoptid;
     private AdoptItem adoptItem;
     private BigDecimal supportamount;
     private String attr;
@@ -16,9 +16,9 @@ public class LineAdoptItem implements Serializable {
 
     }
 
-    public LineAdoptItem(int lineAdoptItemNumber, CartAdoptItem cartAdoptItem){
-        this.lineAdoptItemNumber = lineAdoptItemNumber;
-        this.adoptId = cartAdoptItem.getAdopt().getItemId();
+    public LineAdoptItem(int lineAdoptItemNum, CartAdoptItem cartAdoptItem){
+        this.lineAdoptNum = lineAdoptItemNum;
+        this.adoptid = cartAdoptItem.getAdopt().getItemId();
         this.supportamount = cartAdoptItem.getAdopt().getSupportAmount();
         this.adoptItem = cartAdoptItem.getAdopt();
     }
@@ -31,20 +31,20 @@ public class LineAdoptItem implements Serializable {
         this.adoptItem = adoptItem;
     }
 
-    public void setAdoptId(String adoptId) {
-        this.adoptId = adoptId;
+    public void setAdoptid(String adoptid) {
+        this.adoptid = adoptid;
     }
 
-    public String getAdoptId() {
-        return adoptId;
+    public String getAdoptid() {
+        return adoptid;
     }
 
     public void setOrderId(int orderId) {
         this.orderId = orderId;
     }
 
-    public void setLineAdoptItemNumber(int lineAdoptItemNumber) {
-        this.lineAdoptItemNumber = lineAdoptItemNumber;
+    public void setLineAdoptNum(int lineAdoptNum) {
+        this.lineAdoptNum = lineAdoptNum;
     }
 
     public void setSupportamount(BigDecimal supportamount) {
@@ -63,8 +63,8 @@ public class LineAdoptItem implements Serializable {
         return orderId;
     }
 
-    public int getLineAdoptItemNumber() {
-        return lineAdoptItemNumber;
+    public int getLineAdoptNum() {
+        return lineAdoptNum;
     }
 
     public BigDecimal getSupportamount() {

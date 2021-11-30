@@ -9,16 +9,15 @@
     <select id="getLineAdoptItemsByOrderId" resultType="LineAdoptItem">
         SELECT
             orderid,
-            lineAdoptNum AS lineAdoptNum,
-            adoptid,
-            unitprice
+            lineAdoptNum,
+            adoptid
         FROM LineAdoptItem
         WHERE orderid = #{orderId}
     </select>
 
     <insert id="insertAdoptLineItem">
-        INSERT INTO LineAdoptItem (orderid, lineAdoptNum, adoptid, unitprice)
-        VALUES (#{orderId}, #{lineAdoptNum}, #{adoptid}, #{unitPrice})
+        INSERT INTO LineAdoptItem (orderid, lineAdoptNum, adoptid)
+        VALUES (#{orderId}, #{lineAdoptNum}, #{adoptid})
     </insert>
 
 </mapper>

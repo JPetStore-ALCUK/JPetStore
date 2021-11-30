@@ -165,6 +165,31 @@
 		</table>
 		</td>
 	</tr>
+	<tr>
+		<td colspan="2">
+			<table>
+				<tr>
+					<th>AdoptItem ID</th>
+					<th>Description</th>
+				</tr>
+				<c:forEach var="lineAdoptItem" items="${actionBean.order.lineAdoptItems}">
+					<tr>
+						<td><stripes:link
+								beanclass="org.mybatis.jpetstore.web.actions.AdoptActionBean"
+								event="viewItem">
+							<stripes:param name="itemId" value="${lineAdoptItem.adoptItem.itemId}" />
+							${lineAdoptItem.adoptItem.itemId}
+						</stripes:link></td>
+						<td><c:if test="${lineAdoptItem.adoptItem != null}">
+							${lineAdoptItem.adoptItem.attribute}
+						</c:if> <c:if test="${lineAdoptItem.adoptItem == null}">
+							<i>{description unavailable}</i>
+						</c:if></td>
+					</tr>
+				</c:forEach>
+			</table>
+		</td>
+	</tr>
 
 </table>
 

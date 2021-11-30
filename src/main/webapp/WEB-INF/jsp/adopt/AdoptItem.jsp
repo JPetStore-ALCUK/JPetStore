@@ -69,13 +69,12 @@
             </stripes:link> --%>
                 <input type="button" value="Want to Support"></input>
 
-            <%-- <stripes:link class="Button"
+            <stripes:link class="Button"
                               beanclass="org.mybatis.jpetstore.web.actions.CartActionBean"
-                              event="addItemToCart">
-                <stripes:param name="workingItemId" value="${actionBean.adoptitem.itemId}" />
+                              event="addAdoptItemToCart">
+                <stripes:param name="workingAdoptItemId" value="${actionBean.adoptitem.itemId}" />
                 Want to Adopt
-            </stripes:link>--%>
-                <input type="button" value="Want to Adopt"></input>
+            </stripes:link>
 
 
 </div>

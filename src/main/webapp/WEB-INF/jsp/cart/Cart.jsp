@@ -80,8 +80,41 @@
 			<td>&nbsp;</td>
 		</tr>
 	</table>
+	<hr>
+	<h2>List Wish to adopt</h2>
+	<table>
+		<tr>
+		<th><b>AdoptItem ID</b></th>
+		<th><b>Description</b></th>
+		<th><b>In Stock?</b></th>
+		<th>&nbsp;</th>
+			<c:if test="${actionBean.cart.numberOfAdoptItems == 0}">
+		<tr>
+			<td colspan="8"><b>Your cart is empty.</b></td>
+		</tr>
+		</c:if>
+		</tr>
+		<c:forEach var="cartAdoptItem" items="${actionBean.cart.cartAdoptItems}">
+			<tr>
+				<td><stripes:link
+						beanclass="org.mybatis.jpetstore.web.actions.AdoptActionBean"
+						event="viewItem">
+					<stripes:param name="itemId" value="${cartAdoptItem.adopt.itemId}" />
+					${cartAdoptItem.adopt.itemId}
+				</stripes:link></td>
+				<td>${cartAdoptItem.adopt.attribute}</td>
+				<td>${cartAdoptItem.inStock}</td>
+				<td><stripes:link class="Button"
+								  beanclass="org.mybatis.jpetstore.web.actions.CartActionBean"
+								  event="removeAdoptItemFromCart">
+					<stripes:param name="workingAdoptItemId" value="${cartAdoptItem.adopt.itemId}" />
+					Remove
+				</stripes:link></td>
+			</tr>
+		</c:forEach>
+	</table>
 
-</stripes:form> <c:if test="${actionBean.cart.numberOfItems > 0}">
+</stripes:form> <c:if test="${actionBean.cart.numberOfItems > 0}"><!-- || actionBean.cart.numberOfAdoptItems > 0 -->
 	<stripes:link class="Button"
 		beanclass="org.mybatis.jpetstore.web.actions.OrderActionBean"
 		event="newOrderForm">

@@ -58,9 +58,9 @@ public class AdoptService {
         this.lineAdoptItemMapper.insertAdoptLineItem(lineAdoptItem);
     }
 
-    public boolean isAdoptItemInStock(String adoptItemId){
+    public boolean isAdoptItemInStock(String itemId){
         AdoptItem adoptItem = null;
-        adoptItem = adoptMapper.getAdoptItemById(adoptItemId);
+        adoptItem = adoptMapper.getAdoptItemById(itemId);
         if(adoptItem!=null) return true;
         else return false;
     }
