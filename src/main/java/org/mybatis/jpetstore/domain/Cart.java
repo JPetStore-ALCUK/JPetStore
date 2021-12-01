@@ -35,6 +35,7 @@ public class Cart implements Serializable {
 
   private final Map<String, CartItem> itemMap = Collections.synchronizedMap(new HashMap<>());
   private final List<CartItem> itemList = new ArrayList<>();
+  private final List<CartAdoptItem> adoptItemList = new ArrayList<>();//입양 동물 리스트
 
   public Iterator<CartItem> getCartItems() {
     return itemList.iterator();
@@ -54,6 +55,21 @@ public class Cart implements Serializable {
 
   public boolean containsItemId(String itemId) {
     return itemMap.containsKey(itemId);
+  }
+
+  //입양 동물 리스트 가져오기
+  public Iterator<CartAdoptItem> getAllCartAdoptItems(){return adoptItemList.iterator();}
+
+  public List<CartAdoptItem> getAdoptItemList(){return adoptItemList;}
+
+  public int getNumberOfAdoptItems(){return adoptItemList.size();}
+
+  public boolean containsAdoptItem(String adoptItemId){
+    boolean check = false;
+    for(CartAdoptItem adoptCartItem:adoptItemList){
+      if(adoptCartItem.getAdopt().getItemId()==adoptItemId) {check=true;break;}
+    }
+    return check;
   }
 
   /**
@@ -110,6 +126,33 @@ public class Cart implements Serializable {
     cartItem.setQuantity(quantity);
   }
 
+  public void addAdoptItem(AdoptItem adoptItem, boolean isInStock){
+    if(!containsAdoptItem(adoptItem.getItemId())) {
+      CartAdoptItem cartAdoptItem = new CartAdoptItem();
+      cartAdoptItem.setAdopt(adoptItem);
+      cartAdoptItem.setInStock(isInStock);
+      adoptItemList.add(cartAdoptItem);
+    }
+  }
+
+  public CartAdoptItem findAdoptItem(String adoptId){
+    CartAdoptItem cartAdoptItem = null;
+    for(CartAdoptItem adoptCartItem:adoptItemList){
+      if(adoptCartItem.getAdopt().getItemId()==adoptId) {cartAdoptItem=adoptCartItem;break;}
+    }
+    return cartAdoptItem;
+  }
+
+  public AdoptItem removeAdoptItem(String adoptId){
+    CartAdoptItem cartAdoptItem = findAdoptItem(adoptId);
+    if (cartAdoptItem == null) {
+      return null;
+    } else {
+      itemList.remove(cartAdoptItem);
+      return cartAdoptItem.getAdopt();
+    }
+  }
+
   /**
    * Gets the sub total.
    *
@@ -117,8 +160,13 @@ public class Cart implements Serializable {
    */
   public BigDecimal getSubTotal() {
     return itemList.stream()
-        .map(cartItem -> cartItem.getItem().getListPrice().multiply(new BigDecimal(cartItem.getQuantity())))
-        .reduce(BigDecimal.ZERO, BigDecimal::add);
+            .map(cartItem -> cartItem.getItem().getListPrice().multiply(new BigDecimal(cartItem.getQuantity())))
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
+  }
+  //입양된 아이들에게 후원한 총 금액 계산
+  public BigDecimal getSubAdoptTotal(){
+    return adoptItemList.stream()
+            .map(cartAdoptItem -> cartAdoptItem.getAdopt().getSupportAmount()).reduce(BigDecimal.ZERO,BigDecimal::add);
   }
 
 }

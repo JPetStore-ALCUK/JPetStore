@@ -24,9 +24,12 @@ import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 
+import org.mybatis.jpetstore.domain.AdoptItem;
 import org.mybatis.jpetstore.domain.Cart;
 import org.mybatis.jpetstore.domain.CartItem;
 import org.mybatis.jpetstore.domain.Item;
+import org.mybatis.jpetstore.mapper.AdoptMapper;
+import org.mybatis.jpetstore.service.AdoptService;
 import org.mybatis.jpetstore.service.CatalogService;
 
 /**
@@ -37,103 +40,134 @@ import org.mybatis.jpetstore.service.CatalogService;
 @SessionScope
 public class CartActionBean extends AbstractActionBean {
 
-  private static final long serialVersionUID = -4038684592582714235L;
+    private static final long serialVersionUID = -4038684592582714235L;
 
-  private static final String VIEW_CART = "/WEB-INF/jsp/cart/Cart.jsp";
-  private static final String CHECK_OUT = "/WEB-INF/jsp/cart/Checkout.jsp";
+    private static final String VIEW_CART = "/WEB-INF/jsp/cart/Cart.jsp";
+    private static final String CHECK_OUT = "/WEB-INF/jsp/cart/Checkout.jsp";
 
-  @SpringBean
-  private transient CatalogService catalogService;
+    @SpringBean
+    private transient CatalogService catalogService;
+    @SpringBean
+    private transient AdoptService adoptService; // 입양 동물 서비스
 
-  private Cart cart = new Cart();
-  private String workingItemId;
+    private Cart cart = new Cart();
+    private String workingItemId;
+    private String workingAdoptItemId; // 유기 동물 리스트에서 유기 동물 선택 시 입력 받을 유기 동물 id
 
-  public Cart getCart() {
-    return cart;
-  }
-
-  public void setCart(Cart cart) {
-    this.cart = cart;
-  }
-
-  public void setWorkingItemId(String workingItemId) {
-    this.workingItemId = workingItemId;
-  }
-
-  /**
-   * Adds the item to cart.
-   *
-   * @return the resolution
-   */
-  public Resolution addItemToCart() {
-    if (cart.containsItemId(workingItemId)) {
-      cart.incrementQuantityByItemId(workingItemId);
-    } else {
-      // isInStock is a "real-time" property that must be updated
-      // every time an item is added to the cart, even if other
-      // item details are cached.
-      boolean isInStock = catalogService.isItemInStock(workingItemId);
-      Item item = catalogService.getItem(workingItemId);
-      cart.addItem(item, isInStock);
+    public Cart getCart() {
+        return cart;
     }
 
-    return new ForwardResolution(VIEW_CART);
-  }
-
-  /**
-   * Removes the item from cart.
-   *
-   * @return the resolution
-   */
-  public Resolution removeItemFromCart() {
-
-    Item item = cart.removeItemById(workingItemId);
-
-    if (item == null) {
-      setMessage("Attempted to remove null CartItem from Cart.");
-      return new ForwardResolution(ERROR);
-    } else {
-      return new ForwardResolution(VIEW_CART);
+    public void setCart(Cart cart) {
+        this.cart = cart;
     }
-  }
 
-  /**
-   * Update cart quantities.
-   *
-   * @return the resolution
-   */
-  public Resolution updateCartQuantities() {
-    HttpServletRequest request = context.getRequest();
+    public void setWorkingItemId(String workingItemId) {
+        this.workingItemId = workingItemId;
+    }
 
-    Iterator<CartItem> cartItems = getCart().getAllCartItems();
-    while (cartItems.hasNext()) {
-      CartItem cartItem = cartItems.next();
-      String itemId = cartItem.getItem().getItemId();
-      try {
-        int quantity = Integer.parseInt(request.getParameter(itemId));
-        getCart().setQuantityByItemId(itemId, quantity);
-        if (quantity < 1) {
-          cartItems.remove();
+    public void setWorkingAdoptItemId(String workingAdoptItemId) {
+        this.workingAdoptItemId = workingAdoptItemId;
+    }
+
+    /**
+     * Adds the item to cart.
+     *
+     * @return the resolution
+     */
+    public Resolution addItemToCart() {
+        if (cart.containsItemId(workingItemId)) {
+            cart.incrementQuantityByItemId(workingItemId);
+        } else {
+            // isInStock is a "real-time" property that must be updated
+            // every time an item is added to the cart, even if other
+            // item details are cached.
+            boolean isInStock = catalogService.isItemInStock(workingItemId);
+            Item item = catalogService.getItem(workingItemId);
+            cart.addItem(item, isInStock);
         }
-      } catch (Exception e) {
-        // ignore parse exceptions on purpose
-      }
+
+        return new ForwardResolution(VIEW_CART);
     }
 
-    return new ForwardResolution(VIEW_CART);
-  }
+    /**
+     * Removes the item from cart.
+     *
+     * @return the resolution
+     */
+    public Resolution removeItemFromCart() {
 
-  public ForwardResolution viewCart() {
-    return new ForwardResolution(VIEW_CART);
-  }
+        Item item = cart.removeItemById(workingItemId);
 
-  public ForwardResolution checkOut() {
-    return new ForwardResolution(CHECK_OUT);
-  }
+        if (item == null) {
+            setMessage("Attempted to remove null CartItem from Cart.");
+            return new ForwardResolution(ERROR);
+        } else {
+            return new ForwardResolution(VIEW_CART);
+        }
+    }
 
-  public void clear() {
-    cart = new Cart();
-    workingItemId = null;
-  }
+    /**
+     * Update cart quantities.
+     *
+     * @return the resolution
+     */
+    public Resolution updateCartQuantities() {
+        HttpServletRequest request = context.getRequest();
+
+        Iterator<CartItem> cartItems = getCart().getAllCartItems();
+        while (cartItems.hasNext()) {
+            CartItem cartItem = cartItems.next();
+            String itemId = cartItem.getItem().getItemId();
+            try {
+                int quantity = Integer.parseInt(request.getParameter(itemId));
+                getCart().setQuantityByItemId(itemId, quantity);
+                if (quantity < 1) {
+                    cartItems.remove();
+                }
+            } catch (Exception e) {
+                // ignore parse exceptions on purpose
+            }
+        }
+
+        return new ForwardResolution(VIEW_CART);
+    }
+
+    //입양 동물 카드에 추가
+    public Resolution addAdoptItemToCart(){
+        boolean isInStock = adoptService.isAdoptItemInStock(workingAdoptItemId);
+        if (!cart.containsAdoptItem(workingAdoptItemId)&&isInStock) { // 카트에 이미 존재하면 추가 x
+            AdoptItem adoptItem = adoptService.getAdoptItemById(workingAdoptItemId);
+            cart.addAdoptItem(adoptItem, isInStock);
+        }
+        return new ForwardResolution(VIEW_CART);
+    }
+
+    //입양 동물 카트에서 제거
+    public Resolution removeAdoptItemFromCart() {
+
+        AdoptItem adoptItem = cart.removeAdoptItem(workingAdoptItemId);
+
+        if (adoptItem == null) {
+            setMessage("Attempted to remove null CartAdoptItem from Cart.");
+            return new ForwardResolution(ERROR);
+        } else {
+            return new ForwardResolution(VIEW_CART);
+        }
+    }
+
+    public ForwardResolution viewCart() {
+        return new ForwardResolution(VIEW_CART);
+    }
+
+    public ForwardResolution checkOut() {
+        return new ForwardResolution(CHECK_OUT);
+    }
+
+    public void clear() {
+        cart = new Cart();
+        workingItemId = null;
+        workingAdoptItemId = null; // 선택된 입양 동물 id 초기화
+    }
 
 }

@@ -16,7 +16,9 @@
 package org.mybatis.jpetstore.mapper;
 
 import java.util.List;
+import java.util.Map;
 
+import org.mybatis.jpetstore.domain.Item;
 import org.mybatis.jpetstore.domain.Order;
 
 /**
@@ -33,5 +35,7 @@ public interface OrderMapper {
   void insertOrder(Order order);
 
   void insertOrderStatus(Order order);
+
+  void insertOrderAdoptStatus(Order order);
 
 }

@@ -16,8 +16,10 @@
 package org.mybatis.jpetstore.mapper;
 
 import java.util.List;
+import java.util.Map;
 
 import org.mybatis.jpetstore.domain.LineItem;
+import org.mybatis.jpetstore.domain.Item;
 
 /**
  * The Interface LineItemMapper.
@@ -29,5 +31,7 @@ public interface LineItemMapper {
   List<LineItem> getLineItemsByOrderId(int orderId);
 
   void insertLineItem(LineItem lineItem);
+
+  List<LineItem> getPopular();
 
 }

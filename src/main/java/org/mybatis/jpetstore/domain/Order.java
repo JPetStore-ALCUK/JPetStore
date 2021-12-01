@@ -58,6 +58,7 @@ public class Order implements Serializable {
   private String locale;
   private String status;
   private List<LineItem> lineItems = new ArrayList<>();
+  private List<LineAdoptItem> lineAdoptItems = new ArrayList<>();
 
   public int getOrderId() {
     return orderId;
@@ -275,6 +276,14 @@ public class Order implements Serializable {
     return lineItems;
   }
 
+  public List<LineAdoptItem> getLineAdoptItems() {
+    return lineAdoptItems;
+  }
+
+  public void setLineAdoptItems(List<LineAdoptItem> lineAdoptItems) {
+    this.lineAdoptItems = lineAdoptItems;
+  }
+
   /**
    * Inits the order.
    *
@@ -321,6 +330,11 @@ public class Order implements Serializable {
       addLineItem(cartItem);
     }
 
+    Iterator<CartAdoptItem> k = cart.getAllCartAdoptItems();
+    while(k.hasNext()){
+      CartAdoptItem cartAdoptItem = k.next();
+      addLineAdoptItem(cartAdoptItem);
+    }
   }
 
   public void addLineItem(CartItem cartItem) {
@@ -332,4 +346,11 @@ public class Order implements Serializable {
     lineItems.add(lineItem);
   }
 
+  public void addLineAdoptItem(CartAdoptItem cartAdoptItem){
+    LineAdoptItem lineAdoptItem = new LineAdoptItem(lineAdoptItems.size()+1,cartAdoptItem);
+    addLineAdoptItem(lineAdoptItem);
+  }
+  public void addLineAdoptItem(LineAdoptItem lineAdoptItem){
+    lineAdoptItems.add(lineAdoptItem);
+  }
 }

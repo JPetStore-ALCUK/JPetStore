@@ -86,4 +86,9 @@ public class CatalogService {
   public boolean isItemInStock(String itemId) {
     return itemMapper.getInventoryQuantity(itemId) > 0;
   }
+
+  public void delItem(String itemId) {
+    itemMapper.delItem(itemId);
+  }
+
 }

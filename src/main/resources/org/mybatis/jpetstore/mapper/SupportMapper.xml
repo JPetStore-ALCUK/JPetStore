@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.jpetstore.mapper.SupportMapper">
+    <cache />
+    <update id="updateSupport">
+        UPDATE adoptitem SET supportamount= #{amount}, total_support= total_support + #{amount} WHERE itemid=#{supportItemId}
+    </update>
+
+
+
+
+</mapper>

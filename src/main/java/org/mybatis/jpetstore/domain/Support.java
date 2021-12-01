@@ -1,0 +1,45 @@
+package org.mybatis.jpetstore.domain;
+
+import java.io.Serializable;
+import java.math.BigDecimal;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class Support implements Serializable {
+    private String supportItemId;
+    private String supportCategory;
+    private String cardType;
+    private String creditCard;
+    private String expiryDate;
+    private String billToFirstName;
+    private String billToLastName;
+    private BigDecimal amount;
+
+    public String getCardType(){return cardType;}
+    public String getCreditCard() {
+        return creditCard;
+    }
+    public String getExpiryDate(){return expiryDate;}
+    public String getBillToFirstName(){return billToFirstName;}
+    public String getBillToLastName(){return billToLastName;}
+    public BigDecimal getAmount(){return amount;}
+    public void setCardType(String cardType){this.cardType = cardType;}
+    public void setCreditCard(String creditCard) {
+        this.creditCard = creditCard;
+    }
+    public void setExpiryDate(String expiryDate){this.expiryDate = expiryDate;}
+    public void setBillToFirstName(String billToFirstName){this.billToFirstName = billToFirstName;}
+    public void setBillToLastName(String billToLastName) {this.billToLastName = billToLastName; }
+    public void setAmount(BigDecimal amount) {this.amount = amount;}
+
+    public String getSupportItemId(){return supportItemId;}
+    public String getSupportCategory(){return supportCategory;}
+    public void setSupportItemId(String supportItemId){this.supportItemId = supportItemId;}
+    public void setSupportCategory(String supportCategory){this.supportCategory=supportCategory;}
+
+   // public void initSupport(Support support) {
+     //   supportItemId = support.getSupportItemId();
+       // supportCategory = support.getSupportCategory();
+    //}
+}

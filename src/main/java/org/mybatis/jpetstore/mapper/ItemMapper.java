@@ -35,4 +35,6 @@ public interface ItemMapper {
 
   Item getItem(String itemId);
 
+  void delItem(String itemId);
+
 }

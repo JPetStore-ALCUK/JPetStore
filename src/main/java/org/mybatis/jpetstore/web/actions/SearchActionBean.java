@@ -91,17 +91,8 @@ public class SearchActionBean extends AbstractActionBean{
     public Resolution continueSearch() {return new ForwardResolution(VIEW_SEARCH_FORM);}
     public Resolution searchItems(){
         itemList=null;
-        System.out.println(search.getCategoryId());
-        System.out.println(search.getMinimumPrice());
-        System.out.println(search.getMaximumPrice());
-        System.out.println(search.getAttribute1());
-        System.out.println(search.getAttribute2());
-        System.out.println(search.getAttribute3());
-        System.out.println(search.getAttribute4());
         List<Product> productList = catalogService.getProductListByCategory(search.getCategoryId());
-        System.out.println(productList.size());
         for(int i=0; i<productList.size(); i++) {
-            System.out.println(productList.get(i).getProductId());
             String curProductId = productList.get(i).getProductId();
             search.setProductId(curProductId);
             List<Item> itemListTemp = searchService.searchItemByPriceAndCategory(search);
@@ -109,10 +100,6 @@ public class SearchActionBean extends AbstractActionBean{
                 itemList = itemListTemp;
             }
             else itemList.addAll(itemListTemp);
-
-        }
-        for(int j=0; j<itemList.size(); j++){
-            System.out.println(itemList.get(j).getItemId());
         }
         return new ForwardResolution(SEARCH_RESULT);
     }

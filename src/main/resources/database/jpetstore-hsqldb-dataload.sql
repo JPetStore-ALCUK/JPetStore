@@ -19,11 +19,15 @@ INSERT INTO sequence VALUES('ordernum', 1000);
 INSERT INTO signon VALUES('j2ee','j2ee');
 INSERT INTO signon VALUES('ACID','ACID');
 
+INSERT INTO signon VALUES('manager','manager');
+
 INSERT INTO account VALUES('j2ee','yourname@yourdomain.com','ABC', 'XYX', 'OK', '901 San Antonio Road', 'MS UCUP02-206', 'Palo Alto', 'CA', '94303', 'USA',  '555-555-5555');
 INSERT INTO account VALUES('ACID','acid@yourdomain.com','ABC', 'XYX', 'OK', '901 San Antonio Road', 'MS UCUP02-206', 'Palo Alto', 'CA', '94303', 'USA',  '555-555-5555');
+INSERT INTO account VALUES('manager','manager@yourdomain.com','ABC', 'XYX', 'OK', '901 San Antonio Road', 'MS UCUP02-206', 'Palo Alto', 'CA', '94303', 'USA',  '555-555-5555');
 
 INSERT INTO profile VALUES('j2ee','english','DOGS',1,1);
 INSERT INTO profile VALUES('ACID','english','CATS',1,1);
+INSERT INTO profile VALUES('manager','english','FISH',1,1);
 
 INSERT INTO bannerdata VALUES ('FISH','<image src="../images/banner_fish.gif">');
 INSERT INTO bannerdata VALUES ('CATS','<image src="../images/banner_cats.gif">');
@@ -36,6 +40,9 @@ INSERT INTO category VALUES ('DOGS','Dogs','<image src="../images/dogs_icon.gif"
 INSERT INTO category VALUES ('REPTILES','Reptiles','<image src="../images/reptiles_icon.gif"><font size="5" color="blue"> Reptiles</font>');
 INSERT INTO category VALUES ('CATS','Cats','<image src="../images/cats_icon.gif"><font size="5" color="blue"> Cats</font>');
 INSERT INTO category VALUES ('BIRDS','Birds','<image src="../images/birds_icon.gif"><font size="5" color="blue"> Birds</font>');
+
+INSERT INTO supplier VALUES (1,'XYZ Pets','AC','600 Avon Way','','Los Angeles','CA','94024','212-947-0797');
+INSERT INTO supplier VALUES (2,'ABC Pets','AC','700 Abalone Way','','San Francisco ','CA','94024','415-947-0797');
 
 INSERT INTO product VALUES ('FI-SW-01','FISH','Angelfish','<image src="../images/fish1.gif">Salt Water fish from Australia');
 INSERT INTO product VALUES ('FI-SW-02','FISH','Tiger Shark','<image src="../images/fish4.gif">Salt Water fish from Australia');
@@ -53,9 +60,6 @@ INSERT INTO product VALUES ('FL-DSH-01','CATS','Manx','<image src="../images/cat
 INSERT INTO product VALUES ('FL-DLH-02','CATS','Persian','<image src="../images/cat1.gif">Friendly house cat, doubles as a princess');
 INSERT INTO product VALUES ('AV-CB-01','BIRDS','Amazon Parrot','<image src="../images/bird2.gif">Great companion for up to 75 years');
 INSERT INTO product VALUES ('AV-SB-02','BIRDS','Finch','<image src="../images/bird1.gif">Great stress reliever');
-
-INSERT INTO supplier VALUES (1,'XYZ Pets','AC','600 Avon Way','','Los Angeles','CA','94024','212-947-0797');
-INSERT INTO supplier VALUES (2,'ABC Pets','AC','700 Abalone Way','','San Francisco ','CA','94024','415-947-0797');
 
 INSERT INTO  item (itemid, productid, listprice, unitcost, supplier, status, attr1, attr2, attr3, attr4) VALUES('EST-1','FI-SW-01',16.50,10.00,1,'P','Salty Water', 'Warm Water','Small', 'Male');
 INSERT INTO  item (itemid, productid, listprice, unitcost, supplier, status, attr1, attr2, attr3, attr4) VALUES('EST-2','FI-SW-01',16.50,10.00,1,'P','Salty Water', 'Warm Water','Small', 'Female');
@@ -114,3 +118,7 @@ INSERT INTO inventory (itemid, qty ) VALUES ('EST-25',10000);
 INSERT INTO inventory (itemid, qty ) VALUES ('EST-26',10000);
 INSERT INTO inventory (itemid, qty ) VALUES ('EST-27',10000);
 INSERT INTO inventory (itemid, qty ) VALUES ('EST-28',10000);
+
+INSERT INTO adoptitem (itemId, category, name, age, gender, state, supportamount, total_support, attribute) VALUES ('EST-40', 'DOGS', 'ZERO', 3, 'MALE' , 'Not Adopted', 0, 0,'ACTIVE');
+INSERT INTO adoptitem (itemId, category, name, age, gender, state, supportamount, total_support, attribute) VALUES ('EST-41', 'CATS', 'NABI', 2, 'FEMALE' , 'Not Adopted', 0, 0, 'SHY');
+

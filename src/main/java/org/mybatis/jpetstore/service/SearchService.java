@@ -1,10 +1,8 @@
 package org.mybatis.jpetstore.service;
 
 import org.mybatis.jpetstore.domain.Item;
-import org.mybatis.jpetstore.domain.Product;
 import org.mybatis.jpetstore.domain.Search;
 import org.mybatis.jpetstore.mapper.CategoryMapper;
-import org.mybatis.jpetstore.mapper.ItemMapper;
 import org.mybatis.jpetstore.mapper.SearchMapper;
 import org.springframework.stereotype.Service;
 
@@ -19,6 +17,6 @@ public class SearchService {
         this.categoryMapper=categoryMapper;
     }
     public List<Item> searchItemByPriceAndCategory(Search search){
-         return searchMapper.searchItemByPriceAndCategory(search);
+        return searchMapper.searchItemByPriceAndCategory(search);
     }
 }

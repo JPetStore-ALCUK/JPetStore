@@ -1,26 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!--
-
        Copyright 2010-2020 the original author or authors.
-
        Licensed under the Apache License, Version 2.0 (the "License");
        you may not use this file except in compliance with the License.
        You may obtain a copy of the License at
-
           http://www.apache.org/licenses/LICENSE-2.0
-
        Unless required by applicable law or agreed to in writing, software
        distributed under the License is distributed on an "AS IS" BASIS,
        WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
        See the License for the specific language governing permissions and
        limitations under the License.
-
 -->
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="org.mybatis.jpetstore.mapper.LineItemMapper">
-
   <cache />
 
   <select id="getLineItemsByOrderId" resultType="LineItem">
@@ -38,5 +32,23 @@
     INSERT INTO LINEITEM (ORDERID, LINENUM, ITEMID, QUANTITY, UNITPRICE)
     VALUES (#{orderId}, #{lineNumber}, #{itemId}, #{quantity}, #{unitPrice})
   </insert>
+
+  <select id="getPopular" resultType="LineItem">
+    SELECT I.ITEMID,
+           I.ATTR1 AS attribute1,
+           I.ATTR2 AS attribute2,
+           I.ATTR3 AS attribute3,
+           I.ATTR4 AS attribute4,
+           I.ATTR5 AS attribute5,
+           P.NAME,
+           LINEQTY AS quantity
+    FROM ITEM I,
+         PRODUCT P,
+         (SELECT ITEMID, SUM(QUANTITY) AS LINEQTY FROM LINEITEM GROUP BY ITEMID) AS T
+    WHERE P.PRODUCTID = I.PRODUCTID
+      AND I.ITEMID = T.ITEMID
+      AND LINEQTY > 0
+    ORDER BY LINEQTY DESC
+  </select>
 
 </mapper>

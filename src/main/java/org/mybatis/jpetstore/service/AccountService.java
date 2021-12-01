@@ -69,7 +69,7 @@ public class AccountService {
     accountMapper.updateProfile(account);
 
     Optional.ofNullable(account.getPassword()).filter(password -> password.length() > 0)
-        .ifPresent(password -> accountMapper.updateSignon(account));
+            .ifPresent(password -> accountMapper.updateSignon(account));
   }
 
 }

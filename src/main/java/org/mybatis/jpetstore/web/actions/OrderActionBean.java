@@ -26,7 +26,10 @@ import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 
+import org.mybatis.jpetstore.domain.*;
+import org.mybatis.jpetstore.service.AdoptService;
 import org.mybatis.jpetstore.domain.Order;
+import org.mybatis.jpetstore.domain.LineItem;
 import org.mybatis.jpetstore.service.OrderService;
 
 /**
@@ -44,16 +47,22 @@ public class OrderActionBean extends AbstractActionBean {
   private static final String NEW_ORDER = "/WEB-INF/jsp/order/NewOrderForm.jsp";
   private static final String SHIPPING = "/WEB-INF/jsp/order/ShippingForm.jsp";
   private static final String VIEW_ORDER = "/WEB-INF/jsp/order/ViewOrder.jsp";
+  private static final String SEARCH_POPULAR = "/WEB-INF/jsp/catalog/PopularPets.jsp";
 
   private static final List<String> CARD_TYPE_LIST;
 
   @SpringBean
   private transient OrderService orderService;
 
+  @SpringBean
+  private transient AdoptService adoptService;
+
   private Order order = new Order();
   private boolean shippingAddressRequired;
   private boolean confirmed;
   private List<Order> orderList;
+  private List<LineItem> itemList;
+  private List<LineAdoptItem> adoptItemList; // 입양된 유기 동물 리스트
 
   static {
     CARD_TYPE_LIST = Collections.unmodifiableList(Arrays.asList("Visa", "MasterCard", "American Express"));
@@ -99,11 +108,33 @@ public class OrderActionBean extends AbstractActionBean {
     return orderList;
   }
 
+  public List<LineItem> getItemList() {
+    return itemList;
+  }
+
+  public void setItemList(List<LineItem> itemList) {
+    this.itemList = itemList;
+  }
+
+  public List<LineAdoptItem> getAdoptItemList() {
+    return adoptItemList;
+  }
+
+  public void setAdoptItemList(List<LineAdoptItem> adoptItemList) {
+    this.adoptItemList = adoptItemList;
+  }
+
   /**
    * List orders.
    *
    * @return the resolution
    */
+  /*
+  메소드명: listOrders
+  기   능: 주문 목록을 계정 id를 이용해 가져와서 listOrder.jsp에 출력하도록 한다.
+  입   력: 없음
+  출   력: 포워드 형태의 resolution(주문 목록 jsp를 forward 형태로 반환)
+  * */
   public Resolution listOrders() {
     HttpSession session = context.getRequest().getSession();
     AccountActionBean accountBean = (AccountActionBean) session.getAttribute("/actions/Account.action");
@@ -149,10 +180,12 @@ public class OrderActionBean extends AbstractActionBean {
       return new ForwardResolution(CONFIRM_ORDER);
     } else if (getOrder() != null) {
 
-      orderService.insertOrder(order);
+      orderService.insertOrder(order); //주문 완료
 
       CartActionBean cartBean = (CartActionBean) session.getAttribute("/actions/Cart.action");
       cartBean.clear();
+
+      orderService.insertOrder(order);
 
       setMessage("Thank you, your order has been submitted.");
 
@@ -184,6 +217,10 @@ public class OrderActionBean extends AbstractActionBean {
     }
   }
 
+  public ForwardResolution viewPopularPets() {
+    itemList = orderService.getPurchasedItems();
+    return new ForwardResolution(SEARCH_POPULAR);
+  }
   /**
    * Clear.
    */
