@@ -10,6 +10,8 @@ public class SupportService {
     public SupportService(SupportMapper supportMapper){
         this.supportMapper = supportMapper;
     }
+    public int getNewSupportId(){ return supportMapper.getNewSupportId();}
+    public void insertSupport(Support support){supportMapper.insertSupport(support);}
     public void updateSupport(Support support){
         supportMapper.updateSupport(support);
     }

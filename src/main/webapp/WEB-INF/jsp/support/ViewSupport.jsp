@@ -15,19 +15,6 @@
             <th colspan="2">Support Details</th>
         </tr>
         <tr>
-            <td>Card Type:</td>
-            <td>${actionBean.support.cardType}</td>
-        </tr>
-        <tr>
-            <td>Card Number:</td>
-            <td>${actionBean.support.creditCard} * Fake
-                number!</td>
-        </tr>
-        <tr>
-            <td>Expiry Date (MM/YYYY):</td>
-            <td>${actionBean.support.expiryDate}</td>
-        </tr>
-        <tr>
             <td>First name:</td>
             <td>${actionBean.support.billToFirstName}</td>
         </tr>
@@ -51,8 +38,8 @@
                 </table>
             </td>
         </tr>
-
     </table>
-    <stripes:submit name="confirmSupport" value="Confirm" />
+    <stripes:submit name="end" value="end" />
 </stripes:form></div>
+<%@ include file="../common/IncludeBottom.jsp"%>
 

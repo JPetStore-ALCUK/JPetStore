@@ -41,8 +41,12 @@
             <td><stripes:text name="support.billToLastName" /></td>
         </tr>
         <tr>
-            <td>Id:</td>
-            <td><stripes:text name="support.supportItemId" /></td>
+            <td>ItemId:</td>
+            <td>${actionBean.support.supportItemId}</td>
+        </tr>
+        <tr>
+            <td>Confirm ItemId:</td>
+            <td><stripes:text name="support.supportItemId"/></td>
         </tr>
         <tr>
             <td>Support Amount:</td>
@@ -50,7 +54,7 @@
         </tr>
 
     </table>
-    <stripes:submit name="viewSupport" value="Continue" />
+    <stripes:submit name="confirmSupport" value="Confirm" />
 
 </stripes:form></div>
 

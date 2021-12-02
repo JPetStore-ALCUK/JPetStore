@@ -53,17 +53,15 @@
         </tr>
         <tr>
             <td><b> Support Amount: </b></td>
-            <td><b>${actionBean.adoptitem.total_support}</b></td>
+            <td><b>${actionBean.adoptitem.supportAmount}</b></td>
         </tr>
     </table>
     <td><stripes:link class="Button"
                       beanclass="org.mybatis.jpetstore.web.actions.AdoptActionBean"
                       event="newSupport">
         <stripes:param name="support.supportItemId" value="${actionBean.adoptitem.itemId}" />
-        Support
+        Want to Support
     </stripes:link></td>
-    <input type="button" value="Want to Support"></input>
-
     <input type="button" value="Want to Adopt"></input>
 
 </div>

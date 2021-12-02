@@ -206,3 +206,16 @@ CREATE TABLE BoardElement (
                               id char(10) not null,
                               constraint pk_boardElement primary key (id)
 );
+
+CREATE TABLE Support (
+    supportId int not null,
+    supportItemId varchar(10) not null,
+    category varchar(10) not null,
+    creditcard varchar(80) not null,
+    exprdate varchar(7) not null,
+    cardtype varchar(80) not null,
+    billtofirstname varchar(80) not null,
+    billtolastname varchar(80) not null,
+    amount decimal(10,2) not null,
+    constraint pk_support primary key (supportId)
+);

@@ -7,6 +7,7 @@ import java.util.Date;
 import java.util.List;
 
 public class Support implements Serializable {
+    private int supportId;
     private String supportItemId;
     private String supportCategory;
     private String cardType;
@@ -16,6 +17,7 @@ public class Support implements Serializable {
     private String billToLastName;
     private BigDecimal amount;
 
+    public int getSupportId(){return supportId;}
     public String getCardType(){return cardType;}
     public String getCreditCard() {
         return creditCard;
@@ -24,6 +26,7 @@ public class Support implements Serializable {
     public String getBillToFirstName(){return billToFirstName;}
     public String getBillToLastName(){return billToLastName;}
     public BigDecimal getAmount(){return amount;}
+    public void setSupportId(int supportId){this.supportId = supportId;}
     public void setCardType(String cardType){this.cardType = cardType;}
     public void setCreditCard(String creditCard) {
         this.creditCard = creditCard;
@@ -38,8 +41,4 @@ public class Support implements Serializable {
     public void setSupportItemId(String supportItemId){this.supportItemId = supportItemId;}
     public void setSupportCategory(String supportCategory){this.supportCategory=supportCategory;}
 
-   // public void initSupport(Support support) {
-     //   supportItemId = support.getSupportItemId();
-       // supportCategory = support.getSupportCategory();
-    //}
 }

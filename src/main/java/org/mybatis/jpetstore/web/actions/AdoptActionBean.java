@@ -23,8 +23,7 @@ public class AdoptActionBean extends AbstractActionBean {
     private static final String VIEW_ADOPTLIST = "/WEB-INF/jsp/adopt/AdoptList.jsp";
     private static final String VIEW_ADOPTITEM = "/WEB-INF/jsp/adopt/AdoptItem.jsp";
     private static final String NEW_SUPPORT_FORM = "/WEB-INF/jsp/support/NewSupportForm.jsp";
-    private static final String VIEW_SUPPORT_RESULT = "/WEB-INF/jsp/support/ViewSupport.jsp";
-    private static final String SUPPORT_RESULT = "/WEB-INF/jsp/support/ConfirmSupport.jsp";
+    private static final String VIEW_SUPPORT = "/WEB-INF/jsp/support/ViewSupport.jsp";
     private static final List<String> CARD_TYPE_LIST;
 
 
@@ -99,7 +98,12 @@ public class AdoptActionBean extends AbstractActionBean {
         this.itemList = itemList;
     }
 
+    public String getCardType(String cardType){ return cardType;}
+    public String getCreditCard(String creditCard){return creditCard; }
+
+
     public Support getSupport(){return this.support;}
+    public int getSupportId(){return support.getSupportId();}
     public String getCardType(Support support){return support.getCardType();}
     public String getCreditCard(Support support) { return support.getCreditCard();}
     public String getExpiryDate(Support support){return support.getExpiryDate();}
@@ -111,6 +115,7 @@ public class AdoptActionBean extends AbstractActionBean {
 
 
     public void setSupport(Support support){this.support = support;}
+    public void setSupportId(int supportId){support.setSupportId(supportId);}
     public void setCardType(String cardType){support.setCardType(cardType);}
     public void setCreditCard(String creditCard) {
         support.setCreditCard(creditCard);
@@ -144,7 +149,6 @@ public class AdoptActionBean extends AbstractActionBean {
 
     public ForwardResolution viewItem() {
         adoptitem = adoptService.getItem(itemId);
-        support.setSupportItemId(itemId);
         return new ForwardResolution(VIEW_ADOPTITEM);
     }
 
@@ -152,7 +156,27 @@ public class AdoptActionBean extends AbstractActionBean {
         System.out.println(support.getSupportItemId());
         return new ForwardResolution(NEW_SUPPORT_FORM);
     }
-
+    public Resolution confirmSupport(){
+        System.out.println(support.getSupportItemId());
+        System.out.println(support.getAmount());
+        adoptitem = new AdoptItem();
+        adoptitem = adoptService.getItem(support.getSupportItemId());
+        support.setSupportCategory(adoptitem.getCategory());
+        System.out.println(supportService.getNewSupportId());
+        int index = supportService.getNewSupportId() + 1;
+        support.setSupportId(index);
+        supportService.insertSupport(support);
+        System.out.println(supportService.getNewSupportId());
+        supportService.updateSupport(support);
+        adoptitem = adoptService.getItem(support.getSupportItemId());
+        System.out.println(support.getBillToFirstName());
+        System.out.println(adoptitem.getTotal_support());
+        System.out.println(adoptitem.getItemId());
+        System.out.println(adoptitem.getSupportAmount());
+        return new ForwardResolution(VIEW_ADOPTITEM);
+        //return new ForwardResolution(VIEW_SUPPORT);
+    }
+    /*
     public Resolution viewSupport() {
         System.out.println(support.getSupportItemId());
         supportService.updateSupport(support);
@@ -160,7 +184,7 @@ public class AdoptActionBean extends AbstractActionBean {
         adoptitem = adoptService.getAdoptItemById(support.getSupportItemId());
 
         return new ForwardResolution(VIEW_ADOPTITEM);
-    }
+    }*/
 
     public void clear(){
         adoptitem = null;
