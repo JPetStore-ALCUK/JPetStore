@@ -12,7 +12,7 @@ public class SupportService {
     }
     public int getNewSupportId(){ return supportMapper.getNewSupportId();}
     public void insertSupport(Support support){supportMapper.insertSupport(support);}
-    public void updateSupport(Support support){
-        supportMapper.updateSupport(support);
+    public void updateSupportAmount(Support support){
+        supportMapper.updateSupportAmount(support);
     }
 }

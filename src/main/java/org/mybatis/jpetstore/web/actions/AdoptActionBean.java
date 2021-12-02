@@ -157,34 +157,25 @@ public class AdoptActionBean extends AbstractActionBean {
         return new ForwardResolution(NEW_SUPPORT_FORM);
     }
     public Resolution confirmSupport(){
-        System.out.println(support.getSupportItemId());
-        System.out.println(support.getAmount());
+        //System.out.println(support.getSupportItemId());
+        //System.out.println(support.getAmount());
         adoptitem = new AdoptItem();
         adoptitem = adoptService.getItem(support.getSupportItemId());
         support.setSupportCategory(adoptitem.getCategory());
-        System.out.println(supportService.getNewSupportId());
+        //System.out.println(supportService.getNewSupportId());
         int index = supportService.getNewSupportId() + 1;
         support.setSupportId(index);
         supportService.insertSupport(support);
-        System.out.println(supportService.getNewSupportId());
-        supportService.updateSupport(support);
+        //System.out.println(supportService.getNewSupportId());
+        supportService.updateSupportAmount(support);
         adoptitem = adoptService.getItem(support.getSupportItemId());
-        System.out.println(support.getBillToFirstName());
-        System.out.println(adoptitem.getTotal_support());
-        System.out.println(adoptitem.getItemId());
-        System.out.println(adoptitem.getSupportAmount());
+        //System.out.println(support.getBillToFirstName());
+        //System.out.println(adoptitem.getTotal_support());
+        //System.out.println(adoptitem.getItemId());
+        //System.out.println(adoptitem.getSupportAmount());
         return new ForwardResolution(VIEW_ADOPTITEM);
         //return new ForwardResolution(VIEW_SUPPORT);
     }
-    /*
-    public Resolution viewSupport() {
-        System.out.println(support.getSupportItemId());
-        supportService.updateSupport(support);
-        adoptitem = new AdoptItem();
-        adoptitem = adoptService.getAdoptItemById(support.getSupportItemId());
-
-        return new ForwardResolution(VIEW_ADOPTITEM);
-    }*/
 
     public void clear(){
         adoptitem = null;
