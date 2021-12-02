@@ -11,7 +11,7 @@
         INSERT INTO Support (supportId, supportItemId, category, creditcard, exprdate, cardtype, billtofirstname, billtolastname, amount)
         VALUES(#{supportId}, #{supportItemId}, #{supportCategory}, #{creditCard}, #{expiryDate}, #{cardType}, #{billToFirstName}, #{billToLastName}, #{amount})
     </insert>
-    <update id="updateSupport">
+    <update id="updateSupportAmount">
         UPDATE adoptitem SET supportamount= supportamount + #{amount} WHERE itemid=#{supportItemId}
     </update>
 
