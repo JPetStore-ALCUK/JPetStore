@@ -61,15 +61,16 @@
             <td><b>${actionBean.adoptitem.supportAmount}</b></td>
         </tr>
     </table>
-        <%-- <stripes:link class="Button"
-                              beanclass="org.mybatis.jpetstore.web.actions.CartActionBean"
-                              event="addItemToCart">
-                <stripes:param name="workingItemId" value="${actionBean.adoptitem.itemId}" />
-                Want to Support
-            </stripes:link> --%>
-                <input type="button" value="Want to Support"></input>
+    <!-- support -->
+    <stripes:link class="Button"
+                  beanclass="org.mybatis.jpetstore.web.actions.AdoptActionBean"
+                  event="newSupport">
+        <stripes:param name="support.supportItemId" value="${actionBean.adoptitem.itemId}" />
+        Want to Support
+    </stripes:link>
 
-            <stripes:link class="Button"
+    <!-- adopt -->
+    <stripes:link class="Button"
                               beanclass="org.mybatis.jpetstore.web.actions.CartActionBean"
                               event="addAdoptItemToCart">
                 <stripes:param name="workingAdoptItemId" value="${actionBean.adoptitem.itemId}" />
