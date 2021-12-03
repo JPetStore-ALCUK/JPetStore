@@ -176,7 +176,6 @@ create table adoptitem(
                           gender varchar(10) not null,
                           state varchar(100) not null,
                           supportamount decimal(10,2) not null,
-                          total_support decimal(10,2) not null,
                           attribute varchar(80) not null,
                           constraint pk_adoptitem primary key (itemid),
                           constraint fk_category foreign key(category)

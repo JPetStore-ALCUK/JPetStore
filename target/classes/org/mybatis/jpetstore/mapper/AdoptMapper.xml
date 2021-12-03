@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.jpetstore.mapper.AdoptMapper">
+
+    <select id="getAllAdoptItem" resultType="AdoptItem">
+        SELECT
+            itemid AS itemid,
+            category AS category,
+            name AS name,
+            age AS age,
+            gender AS gender,
+            state AS state,
+            supportamount AS supportamount,
+            total_support AS total_support,
+            attribute AS attribute
+        FROM adoptitem
+    </select>
+
+    <select id="getAdoptItemById" resultType="AdoptItem">
+        SELECT
+            itemid AS itemid,
+            category AS category,
+            name AS name,
+            age AS age,
+            gender AS gender,
+            state AS state,
+            supportamount AS supportamount,
+            total_support AS total_support,
+            attribute AS attribute
+        FROM adoptitem
+        WHERE itemid = #{itemid}
+    </select>
+
+    <insert id="insertAdoptItem">
+        INSERT INTO adoptitem (itemid, category, name, age, gender, state,supportamount,total_support,attribute)
+        VALUES(#{itemid}, #{category}, #{name}, #{age}, #{gender}, #{state},#{supportamount},#{total_support},#{attribute})
+    </insert>
+
+    <delete id="deleteAdoptItem">
+        DELETE FROM adoptitem WHERE itemId = #{itemId}
+    </delete>
+
+    <update id="updateAdoptItemSupportAmount">
+        UPDATE adoptitem SET supportamount= #{supportamount}, total_support=#{total_support} WHERE itemid=#{itemid}
+    </update>
+
+    <select id="getAdoptItemTotalSupportById" resultType="bigdecimal">
+        SELECT
+            total_support AS total_support
+        FROM adoptitem
+        WHERE itemid = #{itemid}
+    </select>
+
+    <insert id="insertList" parameterType="AdoptItem">
+        INSERT INTO adoptitem
+            (itemId, category, name, age, gender, attribute, state, supportamount)
+        VALUES
+            (#{itemId}, #{category}, #{name}, #{age}, #{gender}, #{attribute}, 'Not Adopted', 0)
+    </insert>
+
+    <select id="selectAdoptItem" resultType="AdoptItem">
+        SELECT itemId, category, name, age, gender, attribute, state, supportamount
+        FROM adoptitem
+    </select>
+
+    <select id="getItem" resultType="AdoptItem">
+        SELECT itemId, category, name, age, gender, attribute, state, supportamount
+        FROM adoptitem
+        WHERE itemid = #{itemId}
+    </select>
+
+</mapper>

@@ -11,7 +11,6 @@ public class AdoptItem implements Serializable{
     private String gender;
     private String state;
     private BigDecimal supportamount;
-    private BigDecimal total_support;
     private String attribute;
 
     public void setAll(String itemId, String category, String name, int age, String gender, String attribute)
@@ -22,10 +21,6 @@ public class AdoptItem implements Serializable{
         this.age = age;
         this.gender = gender;
         this.attribute = attribute;
-    }
-
-    public void setTotal_support(BigDecimal total_support) {
-        this.total_support = total_support;
     }
 
     public void setItemId(String itemId) {
@@ -86,10 +81,6 @@ public class AdoptItem implements Serializable{
 
     public BigDecimal getSupportAmount() {
         return supportamount;
-    }
-
-    public BigDecimal getTotal_support() {
-        return total_support;
     }
 
     public String getAttribute() {

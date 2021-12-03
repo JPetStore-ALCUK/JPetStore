@@ -7,9 +7,13 @@
 --%>
 <%@ include file="../common/IncludeTop.jsp"%>
 
+<div id="BackLink"><stripes:link
+        beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean">
+    Return to Main Menu</stripes:link></div>
+
 <div id="Catalog"><stripes:form
         beanclass="org.mybatis.jpetstore.web.actions.AdoptActionBean">
-
+    <h2 style="color:white;" align="center">Thank you, your support goes towards a happy and safe life for these abandoned animals.</h2>
     <table>
         <tr>
             <th colspan="2">Support Details</th>
@@ -27,19 +31,26 @@
                 <table>
                     <tr>
                         <th>Item ID</th>
+                        <th>Name</th>
+                        <th>Category</th>
+                        <th>Age</th>
+                        <th>Gender</th>
                         <th>Description</th>
                         <th>Support Amount</th>
                     </tr>
                     <tr>
                         <td>${actionBean.support.supportItemId}</td>
                         <td>${actionBean.support.supportCategory}</td>
+                        <td>${actionBean.adoptitem.name}</td>
+                        <td>${actionBean.adoptitem.age}</td>
+                        <td>${actionBean.adoptitem.gender}</td>
+                        <td>${actionBean.adoptitem.attribute}</td>
                         <td>${actionBean.support.amount}</td>
                     </tr>
                 </table>
             </td>
         </tr>
     </table>
-    <stripes:submit name="end" value="end" />
 </stripes:form></div>
 <%@ include file="../common/IncludeBottom.jsp"%>
 
