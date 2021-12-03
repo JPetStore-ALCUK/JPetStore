@@ -124,6 +124,9 @@ CREATE TABLE LineAdoptItem(
     orderid int not null,
     lineAdoptNum int not null,
     adoptid varchar(10) not null,
+    name varchar(10) not null,
+    attr varchar(100) not null,
+    catalog varchar(10) not null,
     constraint pk_LineAdoptItem primary key (orderid, lineAdoptNum)
 );
 

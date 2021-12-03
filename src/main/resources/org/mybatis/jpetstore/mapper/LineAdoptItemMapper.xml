@@ -10,14 +10,17 @@
         SELECT
             orderid,
             lineAdoptNum,
-            adoptid
+            adoptid,
+            name,
+            attr,
+            catalog
         FROM LineAdoptItem
         WHERE orderid = #{orderId}
     </select>
 
     <insert id="insertAdoptLineItem">
-        INSERT INTO LineAdoptItem (orderid, lineAdoptNum, adoptid)
-        VALUES (#{orderId}, #{lineAdoptNum}, #{adoptid})
+        INSERT INTO LineAdoptItem (orderid, lineAdoptNum, adoptid, name, attr, catalog)
+        VALUES (#{orderId}, #{lineAdoptNum}, #{adoptid}, #{name},#{attr},#{catalog})
     </insert>
 
 </mapper>

@@ -123,6 +123,9 @@
 		<td colspan="2">Status: <c:out value="${actionBean.order.status}" /></td>
 	</tr>
 	<tr>
+		<th colspan="2">Adopted Animal List</th>
+	</tr>
+	<tr>
 		<td colspan="2">
 		<table>
 			<tr>
@@ -166,26 +169,37 @@
 		</td>
 	</tr>
 	<tr>
+		<th colspan="2">Adopted Abandoned Animal List</th>
+	</tr>
+	<tr>
 		<td colspan="2">
 			<table>
 				<tr>
 					<th>AdoptItem ID</th>
+					<th>Catalog</th>
+					<th>name</th>
 					<th>Description</th>
 				</tr>
 				<c:forEach var="lineAdoptItem" items="${actionBean.order.lineAdoptItems}">
+					<c:if test="${lineAdoptItem != null}">
 					<tr>
-						<td><stripes:link
-								beanclass="org.mybatis.jpetstore.web.actions.AdoptActionBean"
-								event="viewItem">
-							<stripes:param name="itemId" value="${lineAdoptItem.adoptItem.itemId}" />
-							${lineAdoptItem.adoptItem.itemId}
-						</stripes:link></td>
-						<td><c:if test="${lineAdoptItem.adoptItem != null}">
-							${lineAdoptItem.adoptItem.attribute}
-						</c:if> <c:if test="${lineAdoptItem.adoptItem == null}">
-							<i>{description unavailable}</i>
-						</c:if></td>
+						<td>
+							${lineAdoptItem.adoptid}
+						</td>
+						<td>
+							${lineAdoptItem.catalog}
+						</td>
+						<td>
+								${lineAdoptItem.name}
+						</td>
+						<td>
+							${lineAdoptItem.attr}
+						</td>
 					</tr>
+					</c:if>
+					<c:if test="${lineAdoptItem == null}">
+						<i>{description unavailable}</i>
+					</c:if>
 				</c:forEach>
 			</table>
 		</td>

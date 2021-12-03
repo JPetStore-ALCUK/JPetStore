@@ -136,7 +136,7 @@ public class CartActionBean extends AbstractActionBean {
   //입양 동물 카드에 추가
   public Resolution addAdoptItemToCart(){
     boolean isInStock = adoptService.isAdoptItemInStock(workingAdoptItemId);
-    AdoptItem adoptItem = adoptService.getAdoptItemById(workingAdoptItemId);
+    AdoptItem adoptItem = adoptService.getItem(workingAdoptItemId);//
     cart.addAdoptItem(adoptItem, isInStock);
 
     return new ForwardResolution(VIEW_CART);

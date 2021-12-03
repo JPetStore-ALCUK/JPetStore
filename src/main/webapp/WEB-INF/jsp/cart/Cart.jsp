@@ -114,7 +114,7 @@
 		</c:forEach>
 	</table>
 
-</stripes:form> <c:if test="${actionBean.cart.numberOfItems > 0}"><!-- || actionBean.cart.numberOfAdoptItems > 0 -->
+</stripes:form> <c:if test="${actionBean.cart.numberOfItems > 0 || actionBean.cart.numberOfAdoptItems > 0 }">
 	<stripes:link class="Button"
 		beanclass="org.mybatis.jpetstore.web.actions.OrderActionBean"
 		event="newOrderForm">

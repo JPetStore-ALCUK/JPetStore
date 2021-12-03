@@ -23,5 +23,4 @@ public interface AdoptMapper {
     List<AdoptItem> selectAdoptItem();
 
     AdoptItem getItem(String itemId);
-
 }

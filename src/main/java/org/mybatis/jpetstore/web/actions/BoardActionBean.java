@@ -20,6 +20,7 @@ import java.util.List;
 
 import net.sourceforge.stripes.action.ForwardResolution;
 import net.sourceforge.stripes.action.RedirectResolution;
+import net.sourceforge.stripes.action.Resolution;
 import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 
@@ -112,8 +113,12 @@ public class BoardActionBean extends AbstractActionBean {
     return new ForwardResolution(VIEW_NEW_BOARD_ELEMENT_FORM);
   }
 
-  public RedirectResolution insertBoardElement() {
+  public Resolution insertBoardElement() {
     boardElement.setId(makeId());
+    if(boardElement.getTitle()==null ||boardElement.getText()==null || boardElement.getWriter()==null){
+      setMessage("There is no input to post.");
+      return new ForwardResolution(ERROR);
+    }
     boardService.insertBoardElement(boardElement);
     boardElement = boardService.getBoardElementById(boardElement.getId());
     return new RedirectResolution(BoardActionBean.class, "viewBoard");

@@ -17,10 +17,7 @@ package org.mybatis.jpetstore.service;
 
 import java.util.*;
 
-import org.mybatis.jpetstore.domain.Item;
-import org.mybatis.jpetstore.domain.LineItem;
-import org.mybatis.jpetstore.domain.Order;
-import org.mybatis.jpetstore.domain.Sequence;
+import org.mybatis.jpetstore.domain.*;
 import org.mybatis.jpetstore.mapper.*;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -80,6 +77,7 @@ public class OrderService {
     // 주문한 유기 동물들 목록(LineAdoptItem) db에 추가
     order.getLineAdoptItems().forEach(lineAdoptItem->{
       lineAdoptItem.setOrderId(order.getOrderId());
+      //lineAdoptItem.setAdoptItem()
       lineAdoptItemMapper.insertAdoptLineItem(lineAdoptItem);
     });
     // 입양이 된 유기 동물들(AdoptItem) db에서 삭제
@@ -106,6 +104,8 @@ public class OrderService {
       item.setQuantity(itemMapper.getInventoryQuantity(lineItem.getItemId()));
       lineItem.setItem(item);
     });
+    // 입양한 유기 동물들 정보 불러오기
+    //order.getLineAdoptItems();
 
     return order;
   }

@@ -185,8 +185,6 @@ public class OrderActionBean extends AbstractActionBean {
       CartActionBean cartBean = (CartActionBean) session.getAttribute("/actions/Cart.action");
       cartBean.clear();
 
-      orderService.insertOrder(order);
-
       setMessage("Thank you, your order has been submitted.");
 
       return new ForwardResolution(VIEW_ORDER);

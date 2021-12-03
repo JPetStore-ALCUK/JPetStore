@@ -7,10 +7,11 @@ public class LineAdoptItem implements Serializable {
     private int orderId;
     private int lineAdoptNum;
     private String adoptid;
-    private AdoptItem adoptItem;
     private BigDecimal supportamount;
-    private String attr;
     private String name;
+    private String catalog;
+    private String attr;
+
 
     public LineAdoptItem(){
 
@@ -20,15 +21,9 @@ public class LineAdoptItem implements Serializable {
         this.lineAdoptNum = lineAdoptItemNum;
         this.adoptid = cartAdoptItem.getAdopt().getItemId();
         this.supportamount = cartAdoptItem.getAdopt().getSupportAmount();
-        this.adoptItem = cartAdoptItem.getAdopt();
-    }
-
-    public AdoptItem getAdoptItem() {
-        return adoptItem;
-    }
-
-    public void setAdoptItem(AdoptItem adoptItem) {
-        this.adoptItem = adoptItem;
+        this.name=cartAdoptItem.getAdopt().getName();
+        this.attr=cartAdoptItem.getAdopt().getAttribute();
+        this.catalog=cartAdoptItem.getAdopt().getCategory();
     }
 
     public void setAdoptid(String adoptid) {
@@ -77,5 +72,13 @@ public class LineAdoptItem implements Serializable {
 
     public String getName() {
         return name;
+    }
+
+    public String getCatalog() {
+        return catalog;
+    }
+
+    public void setCatalog(String catalog) {
+        this.catalog = catalog;
     }
 }

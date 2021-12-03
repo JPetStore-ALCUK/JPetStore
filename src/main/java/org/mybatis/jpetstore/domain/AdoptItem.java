@@ -56,7 +56,7 @@ public class AdoptItem implements Serializable{
         this.supportamount = supportamount;
     }
 
-    public void setAttribute(String attr) {
+    public void setAttribute(String attribute) {
         this.attribute = attribute;
     }
 
