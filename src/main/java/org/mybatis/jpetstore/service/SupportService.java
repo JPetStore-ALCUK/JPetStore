@@ -15,4 +15,5 @@ public class SupportService {
     public void updateSupportAmount(Support support){
         supportMapper.updateSupportAmount(support);
     }
+    public Support getLastSupport(){return supportMapper.getLastSupport();}
 }

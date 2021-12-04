@@ -16,7 +16,7 @@
     <h2 style="color:white;" align="center">Thank you, your support goes towards a happy and safe life for these abandoned animals.</h2>
     <table>
         <tr>
-            <th colspan="2">Support Details</th>
+            <th colspan="2">Support Details <fmt:formatDate value="${actionBean.support.supportDate}" pattern="yyyy/MM/dd hh:mm:ss" /></th>
         </tr>
         <tr>
             <td>First name:</td>

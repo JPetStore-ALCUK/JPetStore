@@ -1,10 +1,7 @@
 package org.mybatis.jpetstore.web.actions;
 
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 import net.sourceforge.stripes.action.*;
 import net.sourceforge.stripes.integration.spring.SpringBean;
@@ -160,20 +157,28 @@ public class AdoptActionBean extends AbstractActionBean {
 
     //support
     public Resolution newSupport(){
-        //System.out.println(support.getSupportItemId());
         return new ForwardResolution(NEW_SUPPORT_FORM);
     }
+
+    public Resolution viewSupportPage(){
+        //가장 최근의 서포트 기록 가져옴
+        support=supportService.getLastSupport();
+        adoptitem=adoptService.getItem(support.getSupportItemId());
+        return new ForwardResolution(VIEW_SUPPORT);
+    }
+
     public Resolution confirmSupport(){
         adoptitem = new AdoptItem();
         adoptitem = adoptService.getItem(support.getSupportItemId());
         support.setSupportCategory(adoptitem.getCategory());
         int index = supportService.getNewSupportId() + 1;
         support.setSupportId(index);
+        support.setSupportDate(new Date());
         supportService.insertSupport(support);
         supportService.updateSupportAmount(support);
         adoptitem = adoptService.getItem(support.getSupportItemId());
 
-        return new ForwardResolution(VIEW_SUPPORT);
+        return new RedirectResolution(AdoptActionBean.class,"viewSupportPage");
     }
     // end support
 

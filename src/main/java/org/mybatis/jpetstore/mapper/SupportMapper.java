@@ -6,4 +6,5 @@ public interface SupportMapper {
     int getNewSupportId();
     void insertSupport(Support support);
     void updateSupportAmount(Support support);
+    Support getLastSupport();
 }
