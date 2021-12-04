@@ -4,6 +4,8 @@ import org.mybatis.jpetstore.domain.Support;
 import org.mybatis.jpetstore.mapper.SupportMapper;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class SupportService {
     private final SupportMapper supportMapper;
@@ -16,4 +18,5 @@ public class SupportService {
         supportMapper.updateSupportAmount(support);
     }
     public Support getLastSupport(){return supportMapper.getLastSupport();}
+    public List<Support> getAllSupportOrderByAmount(){return supportMapper.getAllSupportOrderByAmount();}
 }

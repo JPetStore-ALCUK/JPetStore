@@ -40,8 +40,8 @@
                     </tr>
                     <tr>
                         <td>${actionBean.support.supportItemId}</td>
-                        <td>${actionBean.support.supportCategory}</td>
                         <td>${actionBean.adoptitem.name}</td>
+                        <td>${actionBean.support.supportCategory}</td>
                         <td>${actionBean.adoptitem.age}</td>
                         <td>${actionBean.adoptitem.gender}</td>
                         <td>${actionBean.adoptitem.attribute}</td>

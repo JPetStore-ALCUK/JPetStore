@@ -21,6 +21,7 @@ public class AdoptActionBean extends AbstractActionBean {
     //support
     private static final String NEW_SUPPORT_FORM = "/WEB-INF/jsp/support/NewSupportForm.jsp";
     private static final String VIEW_SUPPORT = "/WEB-INF/jsp/support/ViewSupport.jsp";
+    private static final String VIEW_SUPPORT_LIST="/WEB-INF/jsp/support/SupportList.jsp";
     private static final List<String> CARD_TYPE_LIST;
     //support end
 
@@ -37,6 +38,7 @@ public class AdoptActionBean extends AbstractActionBean {
 
     //support
     private Support support = new Support();
+    private List<Support> supportList;
 
     static {
         CARD_TYPE_LIST = Collections.unmodifiableList(Arrays.asList("Visa", "MasterCard", "American Express"));
@@ -115,7 +117,9 @@ public class AdoptActionBean extends AbstractActionBean {
     public BigDecimal getAmount(Support support){return support.getAmount();}
     public String getSupportItemId(Support support){return support.getSupportItemId();}
     public String getSupportCategory(Support support){return support.getSupportCategory();}
-
+    public List<Support> getSupportList() {
+        return supportList;
+    }
 
     public void setSupport(Support support){this.support = support;}
     public void setSupportId(int supportId){support.setSupportId(supportId);}
@@ -129,6 +133,9 @@ public class AdoptActionBean extends AbstractActionBean {
     public void setAmount(BigDecimal amount) {support.setAmount(amount);}
     public void setSupportItemId(String supportItemId){support.setSupportItemId(supportItemId);}
     public void setSupportCategory(String supportCategory){support.setSupportCategory(supportCategory);}
+    public void setSupportList(List<Support> supportList) {
+        this.supportList = supportList;
+    }
     //end support
 
     public List<String> getCardTypeList() {return CARD_TYPE_LIST;}
@@ -179,6 +186,11 @@ public class AdoptActionBean extends AbstractActionBean {
         adoptitem = adoptService.getItem(support.getSupportItemId());
 
         return new RedirectResolution(AdoptActionBean.class,"viewSupportPage");
+    }
+
+    public Resolution viewSupportList(){
+        supportList=supportService.getAllSupportOrderByAmount();
+        return new ForwardResolution(VIEW_SUPPORT_LIST);
     }
     // end support
 

@@ -38,6 +38,11 @@
         </c:forEach>
     </table>
 
+    <stripes:link class="Button"
+                  beanclass="org.mybatis.jpetstore.web.actions.AdoptActionBean"
+                  event="viewSupportList">
+        Supporters Hall of Fame
+    </stripes:link>
 </div>
 
 <%@ include file="../common/IncludeBottom.jsp"%>
