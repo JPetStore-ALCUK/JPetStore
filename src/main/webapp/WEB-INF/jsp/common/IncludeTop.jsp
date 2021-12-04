@@ -109,7 +109,7 @@
 					event="viewBoard">
 				Board
 			</stripes:link>
-            <img align="middle" src="../images/separator.gif" />
+			<img align="middle" src="../images/separator.gif" />
 			<stripes:link
 					beanclass="org.mybatis.jpetstore.web.actions.AdoptActionBean"
 					event="viewAdoptItem">
@@ -122,15 +122,15 @@
 		<div id="SearchContent">
 
 			<stripes:form
-				beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean">
-			<stripes:text name="keyword" size="14" />
-			<stripes:submit name="searchProducts" value="Search" />
+					beanclass="org.mybatis.jpetstore.web.actions.CatalogActionBean">
+				<stripes:text name="keyword" size="14" />
+				<stripes:submit name="searchProducts" value="Search" />
 				<stripes:link
-					beanclass="org.mybatis.jpetstore.web.actions.SearchActionBean"
-					event="viewSearchForm">
+						beanclass="org.mybatis.jpetstore.web.actions.SearchActionBean"
+						event="viewSearchForm">
 					<stripes:button name="Detail" value="Search with Datails"></stripes:button>
 				</stripes:link>
-		</stripes:form>
+			</stripes:form>
 		</div>
 	</div>
 	<div id="QuickLinks"><stripes:link

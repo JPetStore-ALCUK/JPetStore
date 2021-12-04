@@ -164,8 +164,8 @@ public class Cart implements Serializable {
    */
   public BigDecimal getSubTotal() {
     return itemList.stream()
-        .map(cartItem -> cartItem.getItem().getListPrice().multiply(new BigDecimal(cartItem.getQuantity())))
-        .reduce(BigDecimal.ZERO, BigDecimal::add);
+            .map(cartItem -> cartItem.getItem().getListPrice().multiply(new BigDecimal(cartItem.getQuantity())))
+            .reduce(BigDecimal.ZERO, BigDecimal::add);
   }
   /*
   //입양된 아이들에게 후원한 총 금액 계산
