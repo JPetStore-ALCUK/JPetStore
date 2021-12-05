@@ -17,9 +17,9 @@
         <tr>
             <td>Card Type:</td>
             <td>
-            <stripes:select name="support.cardType">
-                <stripes:options-collection collection="${actionBean.cardTypeList}" />
-            </stripes:select>
+                <stripes:select name="support.cardType">
+                    <stripes:options-collection collection="${actionBean.cardTypeList}" />
+                </stripes:select>
             </td>
         </tr>
         <tr>

@@ -2,11 +2,11 @@ package org.mybatis.jpetstore.domain;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class Support implements Serializable {
   private int supportId;
-  private Date supportDate;
+  private Timestamp supportDate;
   private String supportItemId;
   private String supportCategory;
   private String cardType;
@@ -88,11 +88,11 @@ public class Support implements Serializable {
     this.supportCategory = supportCategory;
   }
 
-  public Date getSupportDate() {
+  public Timestamp getSupportDate() {
     return supportDate;
   }
 
-  public void setSupportDate(Date date) {
-    this.supportDate = date;
+  public void setSupportDate(Timestamp supportDate) {
+    this.supportDate = supportDate;
   }
 }

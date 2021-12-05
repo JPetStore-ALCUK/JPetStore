@@ -11,7 +11,7 @@ public interface SupportMapper {
 
   void updateSupportAmount(Support support);
 
-  Support getLastSupport();
+  Support getLastSupport(int idx);
 
-  List<Support> getAllSupportOrderByAmount();
+  List<Support> getAllSupport();
 }

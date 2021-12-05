@@ -26,11 +26,11 @@ public class SupportService {
     supportMapper.updateSupportAmount(support);
   }
 
-  public Support getLastSupport() {
-    return supportMapper.getLastSupport();
+  public Support getLastSupport(int index) {
+    return supportMapper.getLastSupport(index);
   }
 
-  public List<Support> getAllSupportOrderByAmount() {
-    return supportMapper.getAllSupportOrderByAmount();
+  public List<Support> getAllSupport() {
+    return supportMapper.getAllSupport();
   }
 }

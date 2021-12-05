@@ -16,22 +16,22 @@
     <H2 style="color:white">Supporters Hall of Fame</H2>
     <span style="color:white">Thank you for support our adorable Friends!
     We will always remember your kindness.</span>
-<table>
-    <tr>
-        <th>Date</th>
-        <th>Name</th>
-        <th>Category</th>
-        <th>Support Amount</th>
-    </tr>
-    <c:forEach var="supporter" items="${actionBean.supportList}">
+    <table>
         <tr>
-            <td><fmt:formatDate value="${supporter.supportDate}" pattern="yyyy/MM/dd hh:mm:ss" /></td>
-            <td>${supporter.billToFirstName} ${supporter.billToLastName}</td>
-            <td>${supporter.supportCategory}</td>
-            <td>${supporter.amount}</td>
+            <th>Date</th>
+            <th>Name</th>
+            <th>Category</th>
+            <th>Support Amount</th>
         </tr>
-    </c:forEach>
-</table>
+        <c:forEach var="supporter" items="${actionBean.supportList}">
+            <tr>
+                <td><fmt:formatDate value="${supporter.supportDate}" pattern="yyyy/MM/dd HH:mm:ss" /></td>
+                <td>${supporter.billToFirstName} ${supporter.billToLastName}</td>
+                <td>${supporter.supportCategory}</td>
+                <td>${supporter.amount}</td>
+            </tr>
+        </c:forEach>
+    </table>
 </div>
 
 <%@ include file="../common/IncludeBottom.jsp"%>

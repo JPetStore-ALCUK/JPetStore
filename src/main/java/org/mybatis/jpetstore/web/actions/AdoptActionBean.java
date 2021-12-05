@@ -1,9 +1,9 @@
 package org.mybatis.jpetstore.web.actions;
 
 import java.math.BigDecimal;
+import java.sql.Timestamp;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Date;
 import java.util.List;
 
 import net.sourceforge.stripes.action.*;
@@ -163,6 +163,10 @@ public class AdoptActionBean extends AbstractActionBean {
     return support.getSupportId();
   }
 
+  public Timestamp getSupportDate() {
+    return support.getSupportDate();
+  }
+
   public String getCardType(Support support) {
     return support.getCardType();
   }
@@ -205,6 +209,10 @@ public class AdoptActionBean extends AbstractActionBean {
 
   public void setSupportId(int supportId) {
     support.setSupportId(supportId);
+  }
+
+  public void setSupportDate(Timestamp date) {
+    support.setSupportDate(date);
   }
 
   public void setCardType(String cardType) {
@@ -278,7 +286,11 @@ public class AdoptActionBean extends AbstractActionBean {
 
   public Resolution viewSupportPage() {
     // 가장 최근의 서포트 기록 가져옴
-    support = supportService.getLastSupport();
+    int idx = supportService.getNewSupportId();
+    support = supportService.getLastSupport(idx);
+    System.out.println("카테고리 :" + support.getSupportCategory());
+    System.out.println("서포트아이디 :" + support.getSupportId());
+    System.out.println("카드 :" + support.getCreditCard());
     adoptitem = adoptService.getItem(support.getSupportItemId());
     return new ForwardResolution(VIEW_SUPPORT);
   }
@@ -289,7 +301,7 @@ public class AdoptActionBean extends AbstractActionBean {
     support.setSupportCategory(adoptitem.getCategory());
     int index = supportService.getNewSupportId() + 1;
     support.setSupportId(index);
-    support.setSupportDate(new Date());
+    support.setSupportDate(new Timestamp(System.currentTimeMillis()));
     supportService.insertSupport(support);
     supportService.updateSupportAmount(support);
     adoptitem = adoptService.getItem(support.getSupportItemId());
@@ -298,7 +310,7 @@ public class AdoptActionBean extends AbstractActionBean {
   }
 
   public Resolution viewSupportList() {
-    supportList = supportService.getAllSupportOrderByAmount();
+    supportList = supportService.getAllSupport();
     return new ForwardResolution(VIEW_SUPPORT_LIST);
   }
   // end support
