@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="org.mybatis.jpetstore.mapper.ShelterMapper">
+    <cache />
+
+    <select id="getShelters" resultType ="Shelter">
+        SELECT
+            shelterid, suppid, total_support
+        FROM Shelter
+    </select>
+
+    <select id="getSupplierById" resultType="Supplier">
+        SELECT
+            suppid, name, status, addr1, addr2, city, state, zip, phone
+        FROM supplier
+        WHERE suppid = #{suppid}
+    </select>
+
+    <select id="getShelterById" resultType ="Shelter">
+        SELECT
+            shelterid, suppid, total_support
+        FROM Shelter
+        WHERE shelterid=#{shelterid}
+    </select>
+
+    <update id="modifyTotal_support">
+        UPDATE Shelter SET total_support=total_support + #{total_support}
+        WHERE shelterid=#{shelterid}
+    </update>
+
+    <insert id="insertShelter">
+        INSERT INTO Shelter (shelterid, suppid, total_support)
+        VALUES (#{shelterid},#{suppid},#{total_support})
+    </insert>
+
+    <insert id="insertSupplier">
+        INSERT INTO supplier (suppid, name, status, addr1, addr2, city, state, zip, phone)
+        VALUES (#{suppid},#{name},#{status},#{addr1},#{addr2},#{city},#{state},#{zip},#{phone})
+    </insert>
+</mapper>

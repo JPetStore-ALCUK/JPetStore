@@ -183,7 +183,6 @@ public class CatalogActionBean extends AbstractActionBean {
     return new ForwardResolution(VIEW_ITEM);
   }
 
-
   /**
    * Search products.
    *

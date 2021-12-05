@@ -15,6 +15,7 @@
  */
 package org.mybatis.jpetstore.service;
 
+import java.math.BigDecimal;
 import java.util.*;
 
 import org.mybatis.jpetstore.domain.*;
@@ -36,16 +37,19 @@ public class OrderService {
   private final LineItemMapper lineItemMapper;
   private final LineAdoptItemMapper lineAdoptItemMapper;
   private final AdoptMapper adoptMapper;
+  private final ShelterMapper shelterMapper;
 
   public OrderService(ItemMapper itemMapper, OrderMapper orderMapper, SequenceMapper sequenceMapper,
-      LineItemMapper lineItemMapper, LineAdoptItemMapper lineAdoptItemMapper,AdoptMapper adoptMapper) {
+      LineItemMapper lineItemMapper, LineAdoptItemMapper lineAdoptItemMapper, AdoptMapper adoptMapper,
+      ShelterMapper shelterMapper) {
 
     this.itemMapper = itemMapper;
     this.orderMapper = orderMapper;
     this.sequenceMapper = sequenceMapper;
     this.lineItemMapper = lineItemMapper;
-    this.lineAdoptItemMapper=lineAdoptItemMapper;
-    this.adoptMapper=adoptMapper;
+    this.lineAdoptItemMapper = lineAdoptItemMapper;
+    this.adoptMapper = adoptMapper;
+    this.shelterMapper = shelterMapper;
   }
 
   /**
@@ -75,13 +79,17 @@ public class OrderService {
       lineItemMapper.insertLineItem(lineItem);
     });
     // 주문한 유기 동물들 목록(LineAdoptItem) db에 추가
-    order.getLineAdoptItems().forEach(lineAdoptItem->{
+    order.getLineAdoptItems().forEach(lineAdoptItem -> {
       lineAdoptItem.setOrderId(order.getOrderId());
-      //lineAdoptItem.setAdoptItem()
+      // lineAdoptItem.setAdoptItem()
       lineAdoptItemMapper.insertAdoptLineItem(lineAdoptItem);
     });
     // 입양이 된 유기 동물들(AdoptItem) db에서 삭제
     order.getLineAdoptItems().forEach(lineAdoptItem -> {
+      String adoptId = lineAdoptItem.getAdoptid();
+      AdoptItem adoptItem = adoptMapper.getItem(adoptId);
+      BigDecimal total_support = adoptMapper.getSupportAmount(adoptId);
+      shelterMapper.modifyTotal_support(total_support, adoptItem.getShelterid());
       adoptMapper.deleteAdoptItem(lineAdoptItem.getAdoptid());
     });
   }
@@ -104,8 +112,6 @@ public class OrderService {
       item.setQuantity(itemMapper.getInventoryQuantity(lineItem.getItemId()));
       lineItem.setItem(item);
     });
-    // 입양한 유기 동물들 정보 불러오기
-    //order.getLineAdoptItems();
 
     return order;
   }

@@ -35,7 +35,7 @@ public class Cart implements Serializable {
 
   private final Map<String, CartItem> itemMap = Collections.synchronizedMap(new HashMap<>());
   private final List<CartItem> itemList = new ArrayList<>();
-  private final List<CartAdoptItem> adoptItemList = new ArrayList<>();//입양 동물 리스트
+  private final List<CartAdoptItem> adoptItemList = new ArrayList<>();// 입양 동물 리스트
 
   public Iterator<CartItem> getCartItems() {
     return itemList.iterator();
@@ -57,20 +57,28 @@ public class Cart implements Serializable {
     return itemMap.containsKey(itemId);
   }
 
-  //입양 동물 리스트 가져오기
+  // 입양 동물 리스트 가져오기
   public Iterator<CartAdoptItem> getCartAdoptItems() {
     return adoptItemList.iterator();
   }
 
-  public Iterator<CartAdoptItem> getAllCartAdoptItems(){return adoptItemList.iterator();}
+  public Iterator<CartAdoptItem> getAllCartAdoptItems() {
+    return adoptItemList.iterator();
+  }
 
-  public List<CartAdoptItem> getAdoptItemList(){return adoptItemList;}
+  public List<CartAdoptItem> getAdoptItemList() {
+    return adoptItemList;
+  }
 
-  public int getNumberOfAdoptItems(){return adoptItemList.size();}
+  public int getNumberOfAdoptItems() {
+    return adoptItemList.size();
+  }
 
-  public boolean containsAdoptItem(String adoptItemId){
-    for(CartAdoptItem adoptCartItem:adoptItemList){
-      if(adoptCartItem.getAdopt().getItemId()==adoptItemId) {return true;}
+  public boolean containsAdoptItem(String adoptItemId) {
+    for (CartAdoptItem adoptCartItem : adoptItemList) {
+      if (adoptCartItem.getAdopt().getItemId() == adoptItemId) {
+        return true;
+      }
     }
     return false;
   }
@@ -129,8 +137,8 @@ public class Cart implements Serializable {
     cartItem.setQuantity(quantity);
   }
 
-  public void addAdoptItem(AdoptItem adoptItem, boolean isInStock){
-    if(!containsAdoptItem(adoptItem.getItemId())) {
+  public void addAdoptItem(AdoptItem adoptItem, boolean isInStock) {
+    if (!containsAdoptItem(adoptItem.getItemId())) {
       CartAdoptItem cartAdoptItem = new CartAdoptItem();
       cartAdoptItem.setAdopt(adoptItem);
       cartAdoptItem.setInStock(isInStock);
@@ -138,15 +146,18 @@ public class Cart implements Serializable {
     }
   }
 
-  public int findAdoptItem(String adoptId){
+  public int findAdoptItem(String adoptId) {
     int index = -1;
-    for(int i=0;i<adoptItemList.size();i++){
-      if(adoptItemList.get(i).getAdopt().getItemId().equals(adoptId)) {index =i;break;}
+    for (int i = 0; i < adoptItemList.size(); i++) {
+      if (adoptItemList.get(i).getAdopt().getItemId().equals(adoptId)) {
+        index = i;
+        break;
+      }
     }
     return index;
   }
 
-  public AdoptItem removeAdoptItem(String adoptId){
+  public AdoptItem removeAdoptItem(String adoptId) {
     int index = findAdoptItem(adoptId);
     if (index < 0) {
       return null;
@@ -168,10 +179,7 @@ public class Cart implements Serializable {
         .reduce(BigDecimal.ZERO, BigDecimal::add);
   }
   /*
-  //입양된 아이들에게 후원한 총 금액 계산
-  public BigDecimal getSubAdoptTotal(){
-    return adoptItemList.stream()
-            .map(cartAdoptItem -> cartAdoptItem.getAdopt().getSupportAmount()).reduce(BigDecimal.ZERO,BigDecimal::add);
-  }
-*/
+   * //입양된 아이들에게 후원한 총 금액 계산 public BigDecimal getSubAdoptTotal(){ return adoptItemList.stream() .map(cartAdoptItem ->
+   * cartAdoptItem.getAdopt().getSupportAmount()).reduce(BigDecimal.ZERO,BigDecimal::add); }
+   */
 }

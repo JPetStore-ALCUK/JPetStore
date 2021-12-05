@@ -331,7 +331,7 @@ public class Order implements Serializable {
     }
 
     Iterator<CartAdoptItem> k = cart.getAllCartAdoptItems();
-    while(k.hasNext()){
+    while (k.hasNext()) {
       CartAdoptItem cartAdoptItem = k.next();
       addLineAdoptItem(cartAdoptItem);
     }
@@ -346,11 +346,12 @@ public class Order implements Serializable {
     lineItems.add(lineItem);
   }
 
-  public void addLineAdoptItem(CartAdoptItem cartAdoptItem){
-    LineAdoptItem lineAdoptItem = new LineAdoptItem(lineAdoptItems.size()+1,cartAdoptItem);
+  public void addLineAdoptItem(CartAdoptItem cartAdoptItem) {
+    LineAdoptItem lineAdoptItem = new LineAdoptItem(lineAdoptItems.size() + 1, cartAdoptItem);
     addLineAdoptItem(lineAdoptItem);
   }
-  public void addLineAdoptItem(LineAdoptItem lineAdoptItem){
+
+  public void addLineAdoptItem(LineAdoptItem lineAdoptItem) {
     lineAdoptItems.add(lineAdoptItem);
   }
 }

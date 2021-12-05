@@ -28,7 +28,6 @@ import org.mybatis.jpetstore.domain.AdoptItem;
 import org.mybatis.jpetstore.domain.Cart;
 import org.mybatis.jpetstore.domain.CartItem;
 import org.mybatis.jpetstore.domain.Item;
-import org.mybatis.jpetstore.mapper.AdoptMapper;
 import org.mybatis.jpetstore.service.AdoptService;
 import org.mybatis.jpetstore.service.CatalogService;
 
@@ -133,8 +132,8 @@ public class CartActionBean extends AbstractActionBean {
     return new ForwardResolution(VIEW_CART);
   }
 
-  //입양 동물 카드에 추가
-  public Resolution addAdoptItemToCart(){
+  // 입양 동물 카드에 추가
+  public Resolution addAdoptItemToCart() {
     boolean isInStock = adoptService.isAdoptItemInStock(workingAdoptItemId);
     AdoptItem adoptItem = adoptService.getItem(workingAdoptItemId);//
     cart.addAdoptItem(adoptItem, isInStock);
@@ -142,7 +141,7 @@ public class CartActionBean extends AbstractActionBean {
     return new ForwardResolution(VIEW_CART);
   }
 
-  //입양 동물 카트에서 제거
+  // 입양 동물 카트에서 제거
   public Resolution removeAdoptItemFromCart() {
 
     AdoptItem adoptItem = cart.removeAdoptItem(workingAdoptItemId);

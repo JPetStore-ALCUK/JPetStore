@@ -20,6 +20,10 @@
                 <td><stripes:text name="category" /></td>
             </tr>
             <tr>
+                <td>Shelter Id:</td>
+                <td><stripes:text name="shelterid"/></td>
+            </tr>
+            <tr>
                 <td>Name:</td>
                 <td><stripes:text name="name" /></td>
             </tr>

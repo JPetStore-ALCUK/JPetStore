@@ -33,6 +33,15 @@
             <td><b> ${actionBean.adoptitem.itemId} </b></td>
         </tr>
         <tr>
+            <td><b> Shelter ID: </b></td>
+            <td><stripes:link
+                    beanclass="org.mybatis.jpetstore.web.actions.ShelterActionBean"
+                    event="viewShelter">
+                <stripes:param name="shelterid" value="${actionBean.adoptitem.shelterid}" />
+            <b>${actionBean.adoptitem.shelterid}</b>
+            </stripes:link></td>
+        </tr>
+        <tr>
             <td><b> Category: </b></td>
             <td><b>${actionBean.adoptitem.category}</b></td>
         </tr>

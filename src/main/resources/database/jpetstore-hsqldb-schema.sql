@@ -27,6 +27,16 @@ create table supplier (
     constraint pk_supplier primary key (suppid)
 );
 
+-- 보호소
+CREATE TABLE Shelter(
+    shelterid varchar(10) not null,
+    suppid int not null,
+    total_support decimal(10,2) not null,
+    constraint pk_shelter primary key (shelterid),
+    constraint fk_supplier foreign key(suppid)
+        references supplier(suppid)
+);
+
 create table signon (
     username varchar(25) not null,
     password varchar(25)  not null,
@@ -169,20 +179,22 @@ create table item (
         references supplier (suppid)
 );
 
--- 입양 동물 추가
+-- 유기 동물 추가
 create table adoptitem(
                           itemid varchar(10) not null,
                           category varchar(10) not null,
+                          shelterid varchar(10) not null,
                           name varchar(10) not null,
                           age int not null,
                           gender varchar(10) not null,
                           state varchar(100) not null,
                           supportamount decimal(10,2) not null,
-                          total_support decimal(10,2) not null,
                           attribute varchar(80) not null,
                           constraint pk_adoptitem primary key (itemid),
                           constraint fk_category foreign key(category)
-                              references category(catid)
+                              references category(catid),
+                            constraint  fk_shelter foreign key(shelterid)
+                            references Shelter(shelterid)
 );
 
 create index itemProd on item (productid);

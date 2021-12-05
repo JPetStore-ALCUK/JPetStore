@@ -119,6 +119,8 @@ INSERT INTO inventory (itemid, qty ) VALUES ('EST-26',10000);
 INSERT INTO inventory (itemid, qty ) VALUES ('EST-27',10000);
 INSERT INTO inventory (itemid, qty ) VALUES ('EST-28',10000);
 
-INSERT INTO adoptitem (itemId, category, name, age, gender, state, supportamount, total_support, attribute) VALUES ('EST-40', 'DOGS', 'ZERO', 3, 'MALE' , 'Not Adopted', 0, 0,'ACTIVE');
-INSERT INTO adoptitem (itemId, category, name, age, gender, state, supportamount, total_support, attribute) VALUES ('EST-41', 'CATS', 'NABI', 2, 'FEMALE' , 'Not Adopted', 0, 0, 'SHY');
+INSERT INTO supplier(suppid, name, status, addr1, addr2, city, state, phone) VALUES(3,'SAFE ANIMAL','t', 'Asia','South Korea','Yeokgok','Bucheon','02-1111-1111');
+INSERT INTO Shelter(shelterid,suppid,total_support) VALUES ('SAFE_1',3,0);
 
+INSERT INTO adoptitem (itemId, category, shelterid, name, age, gender, state, supportamount, attribute) VALUES ('EST-40', 'DOGS', 'SAFE_1','ZERO', 3, 'MALE' , 'Not Adopted', 0,'ACTIVE');
+INSERT INTO adoptitem (itemId, category, shelterid, name, age, gender, state, supportamount, attribute) VALUES ('EST-41', 'CATS', 'SAFE_1','NABI', 2, 'FEMALE' , 'Not Adopted', 0, 'SHY');
