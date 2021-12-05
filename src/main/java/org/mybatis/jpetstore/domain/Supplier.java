@@ -7,7 +7,7 @@ public class Supplier implements Serializable {
   private String name;
   private String status;
   private String addr1;
-  private String add2;
+  private String addr2;
   private String city;
   private String state;
   private String zip;
@@ -29,8 +29,8 @@ public class Supplier implements Serializable {
     this.addr1 = addr1;
   }
 
-  public void setAdd2(String add2) {
-    this.add2 = add2;
+  public void setAddr2(String addr2) {
+    this.addr2 = addr2;
   }
 
   public void setCity(String city) {
@@ -65,8 +65,8 @@ public class Supplier implements Serializable {
     return addr1;
   }
 
-  public String getAdd2() {
-    return add2;
+  public String getAddr2() {
+    return addr2;
   }
 
   public String getCity() {

@@ -17,10 +17,9 @@ import org.mybatis.jpetstore.service.ShelterService;
 public class ShelterActionBean extends AbstractActionBean {
   private static final String VIEW_SHELTER = "/WEB-INF/jsp/shelter/Shelter.jsp";
   private static final String VIEW_SHELTERS = "/WEB-INF/jsp/shelter/Shelters.jsp";
-  private static final String VIEW_NEWSHELTER = "/WEB-INF/jsp/shelter/NewShelter.jsp";
+  //private static final String VIEW_NEWSHELTER = "/WEB-INF/jsp/shelter/NewShelter.jsp";
 
   private List<Shelter> shelters;
-  private HashMap<Integer, Supplier> suppliers;
   private Supplier supplier = new Supplier();
   private Shelter shelter = new Shelter();
 
@@ -71,15 +70,12 @@ public class ShelterActionBean extends AbstractActionBean {
 
   public Resolution viewShelters() {
     shelters = shelterService.getShelters();
-    suppliers = new HashMap<Integer, Supplier>();
     for (Shelter shelter_element : shelters) {
-      Supplier supplier_element = shelterService.getSupplierById(shelter_element.getSuppid());
-      if (!suppliers.containsKey(supplier_element.getSuppid()))
-        suppliers.put(supplier_element.getSuppid(), supplier_element);
+      shelter_element.setSupplier(shelterService.getSupplierById(shelter_element.getSuppid()));
     }
     return new ForwardResolution(VIEW_SHELTERS);
   }
-
+/*
   public Resolution newShelterForm() {
     return new ForwardResolution(VIEW_NEWSHELTER);
   }
@@ -102,5 +98,5 @@ public class ShelterActionBean extends AbstractActionBean {
       setMessage("already existed supplier. please try again.");
       return new ForwardResolution(ERROR);
     }
-  }
+  }*/
 }

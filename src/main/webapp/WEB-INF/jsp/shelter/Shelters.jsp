@@ -22,7 +22,7 @@
                 <stripes:param name="shelterid" value="${shelter.shelterid}" />
                 ${shelter.shelterid}
             </stripes:link></td>
-            <td>${shelter.shelterid}</td>
+             <td>${shelter.supplier.name}</td>
         </c:forEach>
     </table>
 </div>

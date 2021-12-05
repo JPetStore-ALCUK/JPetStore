@@ -41,9 +41,14 @@
     <stripes:link class="Button"
                   beanclass="org.mybatis.jpetstore.web.actions.AdoptActionBean"
                   event="viewSupportList">
-        Supporters Hall of Fame
+        Real-Time Supporters
     </stripes:link>
-
+    <!-- 보호소  -->
+    <stripes:link class="Button"
+                  beanclass="org.mybatis.jpetstore.web.actions.ShelterActionBean"
+                  event="viewShelters">
+        Shelter List
+    </stripes:link>
 </div>
 
 <%@ include file="../common/IncludeBottom.jsp"%>

@@ -6,6 +6,7 @@ import java.math.BigDecimal;
 public class Shelter implements Serializable {
   private String shelterid;
   private int suppid;
+  private Supplier supplier;
   private BigDecimal total_support;
 
   public void setShelterid(String shelterid) {
@@ -30,5 +31,13 @@ public class Shelter implements Serializable {
 
   public BigDecimal getTotal_support() {
     return total_support;
+  }
+
+  public Supplier getSupplier() {
+    return supplier;
+  }
+
+  public void setSupplier(Supplier supplier) {
+    this.supplier = supplier;
   }
 }

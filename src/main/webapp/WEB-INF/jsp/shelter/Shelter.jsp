@@ -34,7 +34,7 @@
         </tr>
         <tr>
             <td><b> Address 2: </b></td>
-            <td><b>${actionBean.supplier.add2}</b></td>
+            <td><b>${actionBean.supplier.addr2}</b></td>
         </tr>
         <tr>
             <td><b> City: </b></td>

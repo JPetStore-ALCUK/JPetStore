@@ -13,7 +13,7 @@
     Return to Adopt Item</stripes:link></div>
 
 <div id="Adopt">
-    <H2 style="color:white">Supporters Hall of Fame</H2>
+    <H2 style="color:white">Real-Time Supporters</H2>
     <span style="color:white">Thank you for support our adorable Friends!
     We will always remember your kindness.</span>
     <table>
