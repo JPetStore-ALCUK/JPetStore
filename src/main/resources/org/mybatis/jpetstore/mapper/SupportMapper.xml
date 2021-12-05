@@ -8,13 +8,18 @@
         SELECT COUNT(*) FROM Support;
     </select>
     <insert id="insertSupport">
-        INSERT INTO Support (supportId, supportItemId, category, creditcard, exprdate, cardtype, billtofirstname, billtolastname, amount)
-        VALUES(#{supportId}, #{supportItemId}, #{supportCategory}, #{creditCard}, #{expiryDate}, #{cardType}, #{billToFirstName}, #{billToLastName}, #{amount})
+        INSERT INTO Support (supportId,supportDate,supportItemId, category, creditcard, exprdate, cardtype, billtofirstname, billtolastname, amount)
+        VALUES(#{supportId},#{supportDate},#{supportItemId}, #{supportCategory}, #{creditCard}, #{expiryDate}, #{cardType}, #{billToFirstName}, #{billToLastName}, #{amount})
     </insert>
     <update id="updateSupportAmount">
         UPDATE adoptitem SET supportamount= supportamount + #{amount} WHERE itemid=#{supportItemId}
     </update>
 
+    <select id="getLastSupport" resultType="Support">
+        SELECT * from Support ORDER BY supportDate desc LIMIT 1
+    </select>
 
-
+    <select id="getAllSupportOrderByAmount" resultType="Support">
+        SELECT * from Support ORDER BY amount desc
+    </select>
 </mapper>

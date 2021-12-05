@@ -224,6 +224,7 @@ CREATE TABLE BoardElement (
 -- 후원 기록
 CREATE TABLE Support (
                          supportId int not null,
+                         supportDate date not null,
                          supportItemId varchar(10) not null,
                          category varchar(10) not null,
                          creditcard varchar(80) not null,

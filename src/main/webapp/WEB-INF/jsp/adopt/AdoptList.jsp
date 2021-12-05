@@ -37,6 +37,12 @@
             </tr>
         </c:forEach>
     </table>
+    <!-- 후원자 명예의 전당 -->
+    <stripes:link class="Button"
+                  beanclass="org.mybatis.jpetstore.web.actions.AdoptActionBean"
+                  event="viewSupportList">
+        Supporters Hall of Fame
+    </stripes:link>
 
 </div>
 

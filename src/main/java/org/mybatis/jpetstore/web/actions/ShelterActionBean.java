@@ -46,7 +46,7 @@ public class ShelterActionBean extends AbstractActionBean {
   }
 
   public Resolution viewShelter() {
-    shelter =new Shelter();
+    shelter = new Shelter();
     supplier = new Supplier();
     shelter = shelterService.getShelterById(shelterid);
     supplier = shelterService.getSupplierById(shelter.getSuppid());

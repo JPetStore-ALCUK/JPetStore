@@ -3,6 +3,7 @@ package org.mybatis.jpetstore.web.actions;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.Collections;
+import java.util.Date;
 import java.util.List;
 
 import net.sourceforge.stripes.action.*;
@@ -23,6 +24,7 @@ public class AdoptActionBean extends AbstractActionBean {
   // support
   private static final String NEW_SUPPORT_FORM = "/WEB-INF/jsp/support/NewSupportForm.jsp";
   private static final String VIEW_SUPPORT = "/WEB-INF/jsp/support/ViewSupport.jsp";
+  private static final String VIEW_SUPPORT_LIST = "/WEB-INF/jsp/support/SupportList.jsp";
   private static final List<String> CARD_TYPE_LIST;
   // support end
 
@@ -40,6 +42,7 @@ public class AdoptActionBean extends AbstractActionBean {
 
   // support
   private Support support = new Support();
+  private List<Support> supportList;
 
   static {
     CARD_TYPE_LIST = Collections.unmodifiableList(Arrays.asList("Visa", "MasterCard", "American Express"));
@@ -192,6 +195,10 @@ public class AdoptActionBean extends AbstractActionBean {
     return support.getSupportCategory();
   }
 
+  public List<Support> getSupportList() {
+    return supportList;
+  }
+
   public void setSupport(Support support) {
     this.support = support;
   }
@@ -231,6 +238,10 @@ public class AdoptActionBean extends AbstractActionBean {
   public void setSupportCategory(String supportCategory) {
     support.setSupportCategory(supportCategory);
   }
+
+  public void setSupportList(List<Support> supportList) {
+    this.supportList = supportList;
+  }
   // end support
 
   public List<String> getCardTypeList() {
@@ -262,8 +273,14 @@ public class AdoptActionBean extends AbstractActionBean {
 
   // support
   public Resolution newSupport() {
-    // System.out.println(support.getSupportItemId());
     return new ForwardResolution(NEW_SUPPORT_FORM);
+  }
+
+  public Resolution viewSupportPage() {
+    // 가장 최근의 서포트 기록 가져옴
+    support = supportService.getLastSupport();
+    adoptitem = adoptService.getItem(support.getSupportItemId());
+    return new ForwardResolution(VIEW_SUPPORT);
   }
 
   public Resolution confirmSupport() {
@@ -272,11 +289,17 @@ public class AdoptActionBean extends AbstractActionBean {
     support.setSupportCategory(adoptitem.getCategory());
     int index = supportService.getNewSupportId() + 1;
     support.setSupportId(index);
+    support.setSupportDate(new Date());
     supportService.insertSupport(support);
     supportService.updateSupportAmount(support);
     adoptitem = adoptService.getItem(support.getSupportItemId());
 
-    return new ForwardResolution(VIEW_SUPPORT);
+    return new RedirectResolution(AdoptActionBean.class, "viewSupportPage");
+  }
+
+  public Resolution viewSupportList() {
+    supportList = supportService.getAllSupportOrderByAmount();
+    return new ForwardResolution(VIEW_SUPPORT_LIST);
   }
   // end support
 
