@@ -125,51 +125,52 @@ public class LineItem implements Serializable {
     total = Optional.ofNullable(item).map(Item::getListPrice).map(v -> v.multiply(new BigDecimal(quantity)))
         .orElse(null);
   }
+
   public String getAttribute1() {
     return attribute1;
   }
 
-  /*public void setAttribute1(String attribute1) {
-    this.attribute1 = item.getAttribute1();
-  }*/
+  /*
+   * public void setAttribute1(String attribute1) { this.attribute1 = item.getAttribute1(); }
+   */
 
   public String getAttribute2() {
     return attribute2;
   }
 
- /* public void setAttribute2(String attribute2) {
-    this.attribute2 = item.getAttribute2();
-  }*/
+  /*
+   * public void setAttribute2(String attribute2) { this.attribute2 = item.getAttribute2(); }
+   */
 
   public String getAttribute3() {
     return attribute3;
   }
 
-  /*public void setAttribute3(String attribute3) {
-    this.attribute3 = item.getAttribute3();
-  }*/
+  /*
+   * public void setAttribute3(String attribute3) { this.attribute3 = item.getAttribute3(); }
+   */
 
   public String getAttribute4() {
     return attribute4;
   }
 
-  /*public void setAttribute4(String attribute4) {
-    this.attribute4 = item.getAttribute4();
-  }*/
+  /*
+   * public void setAttribute4(String attribute4) { this.attribute4 = item.getAttribute4(); }
+   */
 
   public String getAttribute5() {
     return attribute5;
   }
 
-  /*public void setAttribute5(String attribute5) {
-    this.attribute5 = item.getAttribute5();
-  }*/
+  /*
+   * public void setAttribute5(String attribute5) { this.attribute5 = item.getAttribute5(); }
+   */
 
   public String getName() {
     return name;
   }
 
-  /*public void setName(String name){
-    this.name = item.getProduct().getName();
-  }*/
+  /*
+   * public void setName(String name){ this.name = item.getProduct().getName(); }
+   */
 }

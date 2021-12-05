@@ -138,9 +138,13 @@ public class Item implements Serializable {
     this.attribute5 = attribute5;
   }
 
-  public String getProductId(){ return productId; }
+  public String getProductId() {
+    return productId;
+  }
 
-  public void setProductId(String productId){this.productId = productId;}
+  public void setProductId(String productId) {
+    this.productId = productId;
+  }
 
   public String getName() {
     return name;

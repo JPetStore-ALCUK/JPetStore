@@ -63,7 +63,7 @@ public class BoardActionBean extends AbstractActionBean {
     this.boardElement.setText(text);
   }
 
-  public void setBoardId(String id){
+  public void setBoardId(String id) {
     this.boardId = id;
   }
 
@@ -115,7 +115,7 @@ public class BoardActionBean extends AbstractActionBean {
 
   public Resolution insertBoardElement() {
     boardElement.setId(makeId());
-    if(boardElement.getTitle()==null ||boardElement.getText()==null || boardElement.getWriter()==null){
+    if (boardElement.getTitle() == null || boardElement.getText() == null || boardElement.getWriter() == null) {
       setMessage("There is no input to post.");
       return new ForwardResolution(ERROR);
     }

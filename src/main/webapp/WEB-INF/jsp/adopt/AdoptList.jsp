@@ -41,7 +41,7 @@
     <stripes:link class="Button"
                   beanclass="org.mybatis.jpetstore.web.actions.AdoptActionBean"
                   event="viewSupportList">
-        Supporters Hall of Fame
+        Real-Time Supporters
     </stripes:link>
 </div>
 

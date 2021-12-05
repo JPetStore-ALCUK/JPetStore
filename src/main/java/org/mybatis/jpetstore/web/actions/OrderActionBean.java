@@ -27,9 +27,9 @@ import net.sourceforge.stripes.action.SessionScope;
 import net.sourceforge.stripes.integration.spring.SpringBean;
 
 import org.mybatis.jpetstore.domain.*;
-import org.mybatis.jpetstore.service.AdoptService;
-import org.mybatis.jpetstore.domain.Order;
 import org.mybatis.jpetstore.domain.LineItem;
+import org.mybatis.jpetstore.domain.Order;
+import org.mybatis.jpetstore.service.AdoptService;
 import org.mybatis.jpetstore.service.OrderService;
 
 /**
@@ -130,11 +130,9 @@ public class OrderActionBean extends AbstractActionBean {
    * @return the resolution
    */
   /*
-  메소드명: listOrders
-  기   능: 주문 목록을 계정 id를 이용해 가져와서 listOrder.jsp에 출력하도록 한다.
-  입   력: 없음
-  출   력: 포워드 형태의 resolution(주문 목록 jsp를 forward 형태로 반환)
-  * */
+   * 메소드명: listOrders 기 능: 주문 목록을 계정 id를 이용해 가져와서 listOrder.jsp에 출력하도록 한다. 입 력: 없음 출 력: 포워드 형태의 resolution(주문 목록 jsp를
+   * forward 형태로 반환)
+   */
   public Resolution listOrders() {
     HttpSession session = context.getRequest().getSession();
     AccountActionBean accountBean = (AccountActionBean) session.getAttribute("/actions/Account.action");
@@ -180,7 +178,7 @@ public class OrderActionBean extends AbstractActionBean {
       return new ForwardResolution(CONFIRM_ORDER);
     } else if (getOrder() != null) {
 
-      orderService.insertOrder(order); //주문 완료
+      orderService.insertOrder(order); // 주문 완료
 
       CartActionBean cartBean = (CartActionBean) session.getAttribute("/actions/Cart.action");
       cartBean.clear();
@@ -219,6 +217,7 @@ public class OrderActionBean extends AbstractActionBean {
     itemList = orderService.getPurchasedItems();
     return new ForwardResolution(SEARCH_POPULAR);
   }
+
   /**
    * Clear.
    */

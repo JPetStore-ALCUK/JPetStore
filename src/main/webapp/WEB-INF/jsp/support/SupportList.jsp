@@ -25,7 +25,7 @@
     </tr>
     <c:forEach var="supporter" items="${actionBean.supportList}">
         <tr>
-            <td><fmt:formatDate value="${supporter.supportDate}" pattern="yyyy/MM/dd hh:mm:ss" /></td>
+            <td><fmt:formatDate value="${supporter.supportDate}" pattern="yyyy/MM/dd HH:mm:ss" /></td>
             <td>${supporter.billToFirstName} ${supporter.billToLastName}</td>
             <td>${supporter.supportCategory}</td>
             <td>${supporter.amount}</td>
